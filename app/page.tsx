@@ -64,6 +64,7 @@ const plans = [
   {
     id: "tres-ilhas",
     label: "Preço promocional",
+    selectorTitle: "Três Ilhas",
     title: "Passeio das três ilhas",
     price: "R$ 1.600,00",
     originalPrice: "R$ 2.300,00",
@@ -85,6 +86,7 @@ const plans = [
   {
     id: "montao-do-trigo",
     label: "Roteiro exclusivo",
+    selectorTitle: "Montão de Trigo",
     title: "Ilha Montão do Trigo",
     price: "R$ 2.800,00",
     originalPrice: null,
@@ -106,6 +108,7 @@ const plans = [
   {
     id: "ilhabela",
     label: "Roteiro premium",
+    selectorTitle: "Ilhabela com possibilidade de avistamento de baleias",
     title: "Ilhabela com possibilidade de avistamento de baleias",
     price: "R$ 4.600,00",
     originalPrice: null,
@@ -127,6 +130,7 @@ const plans = [
   {
     id: "personalizado",
     label: "Personalizado",
+    selectorTitle: "Personalizado",
     title: "Passeios personalizados",
     price: "Sob consulta",
     originalPrice: null,
@@ -1007,10 +1011,9 @@ export default function Home() {
                           active ? "bg-white text-[var(--color-navy)] shadow-[0_0_0_2px_var(--color-aqua)]" : "bg-white/5 text-white/72 hover:bg-white/8 hover:text-white"
                         } ${primaryInteractiveClassName}`}
                       >
-                        <span className={`block text-[0.6rem] font-semibold uppercase tracking-[0.18em] ${active ? "text-[var(--color-navy)]/66" : "text-[var(--color-sand)]"}`}>
-                          {plan.label}
+                        <span className={`block line-clamp-2 text-[0.62rem] font-semibold uppercase leading-snug tracking-[0.14em] ${active ? "text-[var(--color-navy)]/70" : "text-[var(--color-sand)]"}`}>
+                          {plan.selectorTitle}
                         </span>
-                        <span className="mt-1.5 line-clamp-2 block text-[0.78rem] font-semibold leading-tight lg:hidden">{plan.title}</span>
                         <span className="mt-1.5 block font-display text-xl leading-none">{plan.price}</span>
                         <span className={`mt-1 block text-[0.72rem] ${active ? "text-[var(--color-navy)]/68" : "text-white/56"}`}>
                           {plan.duration}

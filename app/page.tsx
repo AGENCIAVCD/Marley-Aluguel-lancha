@@ -73,11 +73,11 @@ const plans = [
     tagline: "Ilha dos Gatos, Ilha das Couves e As Ilhas em um roteiro compacto e certeiro.",
     idealFor: "Perfeito para casal, família pequena ou grupo que quer mar bonito, banho e fotos sem comprometer o dia inteiro.",
     summary:
-      "Passeio privativo ideal para quem quer curtir três paradas clássicas com praticidade, visual bonito e tempo para banho.",
+      "Passeio das três ilhas: Ilha dos Gatos, Ilha das Couves e As Ilhas, com duração de 3 horas e preço promocional de R$ 1.600,00.",
     benefits: ["Ilha dos Gatos", "Ilha das Couves", "As Ilhas", "Endereço do píer enviado após a reserva"],
     secretTitle: "O melhor custo por memória",
     secretCopy:
-      "Esse plano funciona muito bem para quem quer sentir que fez algo especial sem transformar o passeio em uma grande produção.",
+      "Esse roteiro funciona muito bem para quem quer sentir que fez algo especial sem transformar o passeio em uma grande produção.",
     secretBullets: ["Sai bonito nas fotos", "Cabe na agenda do fim de semana", "Entrega experiência premium com investimento menor"],
     image: "/pexels/boats-aerial.jpg",
     imageAlt: "Vista aérea de lanchas em roteiro das três ilhas saindo de Boiçucanga",
@@ -94,7 +94,7 @@ const plans = [
     tagline: "Um passeio para quem quer ir além do óbvio e conhecer um visual marcante do litoral.",
     idealFor: "Ideal para quem já conhece os roteiros mais básicos e quer uma navegação com cara de descoberta.",
     summary:
-      "Roteiro privativo até a Ilha Montão do Trigo, com navegação cênica, pausa para contemplar e tempo para aproveitar o mar.",
+      "Ilha Montão do Trigo com duração de 3 a 4 horas, por R$ 2.800,00, para quem quer conhecer um roteiro menos comum no litoral.",
     benefits: ["Ilha Montão do Trigo", "Roteiro menos comum", "Navegação de 3 a 4 horas", "Endereço do píer enviado após a reserva"],
     secretTitle: "A escolha de quem quer novidade",
     secretCopy:
@@ -105,8 +105,8 @@ const plans = [
   },
   {
     id: "ilhabela",
-    label: "Plano Premium",
-    title: "Ilhabela com chance de avistamento de baleias",
+    label: "Roteiro premium",
+    title: "Ilhabela com possibilidade de avistamento de baleias",
     price: "R$ 4.600,00",
     originalPrice: null,
     duration: "3 a 4 horas",
@@ -115,9 +115,9 @@ const plans = [
     tagline: "Ilhabela em meio período, com possibilidade de avistamento de baleias na temporada.",
     idealFor: "Ideal para clientes que querem impressionar convidados, celebrar uma data ou transformar o passeio no evento principal.",
     summary:
-      "Experiência mais exclusiva para quem quer navegar até Ilhabela e aproveitar um roteiro de 3 a 4 horas com possibilidade de avistar baleias.",
+      "Ilhabela com possibilidade de avistamento de baleias, duração de 3 a 4 horas e investimento de R$ 4.600,00.",
     benefits: ["Navegação até Ilhabela", "Possibilidade de avistamento de baleias", "Duração de 3 a 4 horas", "Endereço do píer enviado após a reserva"],
-    secretTitle: "O plano que vira história",
+    secretTitle: "O roteiro que vira história",
     secretCopy:
       "Aqui o valor não está só na distância. Está na chance de viver um dia raro, com Ilhabela no roteiro e natureza fazendo parte da surpresa.",
     secretBullets: ["Mais tempo a bordo", "Mais impacto para datas especiais", "Mais chance de uma experiência realmente incomum"],
@@ -126,21 +126,21 @@ const plans = [
   },
   {
     id: "personalizado",
-    label: "Sob medida",
-    title: "Passeio personalizado",
+    label: "Personalizado",
+    title: "Passeios personalizados",
     price: "Sob consulta",
     originalPrice: null,
     duration: "Personalizado",
     capacity: "Até 6 passageiros",
     embark: "Saída de Boiçucanga",
-    tagline: "Quer conhecer outras praias e ilhas? A equipe monta o roteiro com você.",
+    tagline: "Quer conhecer outras praias e ilhas? Converse com a equipe e crie um roteiro personalizado.",
     idealFor: "Perfeito para quem tem uma praia em mente, quer ajustar tempo de navegação ou precisa de uma experiência sob medida.",
     summary:
-      "Converse com nossa equipe para criar um roteiro personalizado por praias, ilhas e paradas que façam sentido para o seu grupo.",
+      "Passeios personalizados para conhecer outras praias e ilhas, com roteiro criado em conversa direta com a equipe Marley.",
     benefits: ["Roteiro criado com a equipe", "Praias e ilhas sob consulta", "Duração combinada antes da reserva", "Endereço do píer enviado após a reserva"],
     secretTitle: "A rota que nasce da conversa",
     secretCopy:
-      "Esse plano é para transformar uma ideia em passeio. Em vez de encaixar o cliente em uma rota pronta, a Marley desenha a experiência com ele.",
+      "Esse roteiro é para transformar uma ideia em passeio. Em vez de encaixar o cliente em uma rota pronta, a Marley desenha a experiência com ele.",
     secretBullets: ["Mais flexibilidade", "Mais aderência ao perfil do grupo", "Boa opção para pedidos especiais"],
     image: "/pexels/turquoise-boats.jpg",
     imageAlt: "Água cristalina e barcos no litoral norte para passeio personalizado de lancha",
@@ -227,7 +227,7 @@ function buildHeroWhatsappHref(people: string, date: string, itinerary: string) 
   const message = [
     "Olá, Marley! Quero reservar um passeio de lancha.",
     "",
-    `Plano de interesse: ${plan.title}`,
+    `Roteiro de interesse: ${plan.title}`,
     `Data desejada: ${formatPreferredDate(date)}`,
     `Quantidade de pessoas: ${guestsLabel}`,
     `Duração: ${plan.duration}`,
@@ -754,11 +754,14 @@ export default function Home() {
           <motion.div {...fadeUp()} className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
             <div className="max-w-lg">
               <p className="font-sans text-[0.72rem] uppercase tracking-[0.4em] text-[var(--color-sand)]">
-                Planos de passeio
+                Roteiros de passeio
               </p>
               <h2 className="mt-4 text-balance font-display text-4xl leading-none tracking-[-0.03em] sm:text-5xl">
                 Escolha entre roteiros prontos ou crie um passeio personalizado com a equipe Marley.
               </h2>
+              <p className="mt-4 max-w-md text-sm leading-6 text-white/68 sm:text-base sm:leading-7">
+                Três ilhas, Montão do Trigo, Ilhabela com possibilidade de avistamento de baleias ou um roteiro sob medida para outras praias e ilhas.
+              </p>
               <a
                 href="#reserva-rapida"
                 onClick={() =>
@@ -885,7 +888,7 @@ export default function Home() {
                           }
                           className={`inline-flex items-center justify-center gap-2 rounded-full bg-[var(--color-sand)] px-6 py-4 text-sm font-semibold text-[var(--color-navy)] hover:bg-[var(--color-aqua)] ${primaryInteractiveClassName}`}
                         >
-                          Reservar este plano
+                          Reservar este roteiro
                           <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
                         </a>
                         <button
@@ -960,7 +963,7 @@ export default function Home() {
                           }
                           className={`mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-[var(--color-navy)] px-6 py-4 text-sm font-semibold text-white hover:bg-[var(--color-navy)]/88 ${primaryInteractiveClassName}`}
                         >
-                          Quero esse plano
+                          Quero esse roteiro
                           <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
                         </a>
                       </div>
@@ -973,7 +976,7 @@ export default function Home() {
             <motion.aside {...fadeUp(0.08)} className="order-first flex flex-col gap-3 lg:order-none">
               <div className="rounded-[1.4rem] border border-white/12 bg-white/5 p-2.5">
                 <div className="mb-2 flex items-center justify-between gap-2 px-1">
-                  <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-white/62">Planos</p>
+                  <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-white/62">Roteiros</p>
                   <span className="rounded-full bg-white/10 px-2.5 py-1 text-[0.68rem] font-semibold text-white/74">
                     {activePlanIndex + 1}/{plans.length}
                   </span>
@@ -982,7 +985,7 @@ export default function Home() {
                       type="button"
                       onClick={() => movePlan(-1)}
                       className={`inline-flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-white hover:bg-[var(--color-sand)] hover:text-[var(--color-navy)] ${primaryInteractiveClassName}`}
-                      aria-label="Plano anterior"
+                      aria-label="Roteiro anterior"
                     >
                       <ChevronLeft aria-hidden="true" className="h-3.5 w-3.5" />
                     </button>
@@ -990,14 +993,14 @@ export default function Home() {
                       type="button"
                       onClick={() => movePlan(1)}
                       className={`inline-flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-white hover:bg-[var(--color-sand)] hover:text-[var(--color-navy)] ${primaryInteractiveClassName}`}
-                      aria-label="Próximo plano"
+                      aria-label="Próximo roteiro"
                     >
                       <ChevronRight aria-hidden="true" className="h-3.5 w-3.5" />
                     </button>
                   </div>
                 </div>
 
-                <div className="flex gap-2 overflow-x-auto [scrollbar-width:none] lg:block lg:space-y-1 lg:overflow-visible [&::-webkit-scrollbar]:hidden">
+                <div className="grid grid-cols-2 gap-2 lg:block lg:space-y-1">
                   {plans.map((plan) => {
                     const active = plan.id === selectedPlan.id;
 
@@ -1006,13 +1009,14 @@ export default function Home() {
                         key={plan.id}
                         type="button"
                         onClick={() => selectPlan(plan.id)}
-                        className={`block min-w-[8rem] rounded-[1rem] p-2.5 text-left transition lg:w-full lg:min-w-0 ${
-                          active ? "bg-white text-[var(--color-navy)]" : "bg-white/5 text-white/72 hover:bg-white/8 hover:text-white"
+                        className={`block min-h-[6.4rem] rounded-[1rem] p-2.5 text-left transition lg:min-h-[5.15rem] lg:w-full ${
+                          active ? "bg-white text-[var(--color-navy)] shadow-[0_0_0_2px_var(--color-aqua)]" : "bg-white/5 text-white/72 hover:bg-white/8 hover:text-white"
                         } ${primaryInteractiveClassName}`}
                       >
                         <span className={`block text-[0.6rem] font-semibold uppercase tracking-[0.18em] ${active ? "text-[var(--color-navy)]/66" : "text-[var(--color-sand)]"}`}>
                           {plan.label}
                         </span>
+                        <span className="mt-1.5 line-clamp-2 block text-[0.78rem] font-semibold leading-tight lg:hidden">{plan.title}</span>
                         <span className="mt-1.5 block font-display text-xl leading-none">{plan.price}</span>
                         <span className={`mt-1 block text-[0.72rem] ${active ? "text-[var(--color-navy)]/68" : "text-white/56"}`}>
                           {plan.duration}
@@ -1050,7 +1054,7 @@ export default function Home() {
                     type="button"
                     onClick={() => movePlan(-1)}
                     className={`inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/16 text-white hover:bg-white/10 ${primaryInteractiveClassName}`}
-                    aria-label="Plano anterior"
+                    aria-label="Roteiro anterior"
                   >
                     <ChevronLeft aria-hidden="true" className="h-5 w-5" />
                   </button>
@@ -1058,7 +1062,7 @@ export default function Home() {
                     type="button"
                     onClick={() => movePlan(1)}
                     className={`inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/16 text-white hover:bg-white/10 ${primaryInteractiveClassName}`}
-                    aria-label="Próximo plano"
+                    aria-label="Próximo roteiro"
                   >
                     <ChevronRight aria-hidden="true" className="h-5 w-5" />
                   </button>

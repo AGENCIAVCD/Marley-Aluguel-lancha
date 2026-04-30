@@ -242,7 +242,7 @@ export default function Home() {
   const [revealedPlan, setRevealedPlan] = useState<string | null>(null);
   const [activeExperience, setActiveExperience] = useState(0);
   const [isExperienceSectionVisible, setIsExperienceSectionVisible] = useState(false);
-  const [people, setPeople] = useState("4");
+  const [people, setPeople] = useState("1");
   const [date, setDate] = useState("");
   const experienceSectionRef = useRef<HTMLElement | null>(null);
   const experienceTrackRef = useRef<HTMLDivElement | null>(null);
@@ -501,8 +501,9 @@ export default function Home() {
               </div>
 
               <motion.aside
+                id="reserva-rapida"
                 {...fadeUp(0.3)}
-                className="min-w-0 rounded-[2rem] border border-white/12 bg-[rgba(8,19,37,0.78)] p-5 shadow-[0_28px_100px_rgba(3,8,18,0.4)] backdrop-blur-xl lg:justify-self-end lg:translate-y-8"
+                className="min-w-0 scroll-mt-24 rounded-[2rem] border border-white/12 bg-[rgba(8,19,37,0.78)] p-5 shadow-[0_28px_100px_rgba(3,8,18,0.4)] backdrop-blur-xl lg:justify-self-end lg:translate-y-8"
               >
                 <p className="font-sans text-[0.68rem] uppercase tracking-[0.35em] text-[var(--color-sand)]">
                   Reserva imediata
@@ -517,6 +518,37 @@ export default function Home() {
                 <div className="mt-6 space-y-4">
                   <label className="block">
                     <span className="mb-2 flex items-center gap-2 text-sm text-white/72">
+                      <ShipWheel aria-hidden="true" className="h-4 w-4 text-[var(--color-sand)]" />
+                      Qual passeio?
+                    </span>
+                    <select
+                      name="itinerary"
+                      autoComplete="off"
+                      value={activeItinerary}
+                      onChange={(event) => selectPlan(event.target.value)}
+                      className={`w-full rounded-2xl border border-white/12 bg-white/8 px-4 py-3 text-white focus:border-[var(--color-aqua)] ${primaryInteractiveClassName}`}
+                    >
+                      {plans.map((plan) => (
+                        <option key={plan.id} value={plan.id} className="text-[var(--color-navy)]">
+                          {plan.title}
+                        </option>
+                      ))}
+                    </select>
+                    <a
+                      href="#roteiros"
+                      onClick={() =>
+                        trackEvent("view_plans", {
+                          cta_location: "booking_form_helper",
+                        })
+                      }
+                      className={`mt-2 inline-flex text-xs font-semibold text-[var(--color-sand)] underline-offset-4 hover:text-[var(--color-aqua)] hover:underline ${primaryInteractiveClassName}`}
+                    >
+                      Não sabe qual escolher? Ver tipos de passeio
+                    </a>
+                  </label>
+
+                  <label className="block">
+                    <span className="mb-2 flex items-center gap-2 text-sm text-white/72">
                       <Users aria-hidden="true" className="h-4 w-4 text-[var(--color-sand)]" />
                       Quantas pessoas?
                     </span>
@@ -527,15 +559,11 @@ export default function Home() {
                       onChange={(event) => setPeople(event.target.value)}
                       className={`w-full rounded-2xl border border-white/12 bg-white/8 px-4 py-3 text-white focus:border-[var(--color-aqua)] ${primaryInteractiveClassName}`}
                     >
-                      <option value="2" className="text-[var(--color-navy)]">
-                        2 pessoas
-                      </option>
-                      <option value="4" className="text-[var(--color-navy)]">
-                        4 pessoas
-                      </option>
-                      <option value="6" className="text-[var(--color-navy)]">
-                        6 pessoas
-                      </option>
+                      {Array.from({ length: 6 }, (_, index) => index + 1).map((amount) => (
+                        <option key={amount} value={String(amount)} className="text-[var(--color-navy)]">
+                          {amount} {amount === 1 ? "pessoa" : "pessoas"}
+                        </option>
+                      ))}
                     </select>
                   </label>
 
@@ -724,6 +752,19 @@ export default function Home() {
               <h2 className="mt-4 text-balance font-display text-4xl leading-none tracking-[-0.03em] sm:text-5xl">
                 Escolha entre roteiros prontos ou crie um passeio personalizado com a equipe Marley.
               </h2>
+              <a
+                href="#reserva-rapida"
+                onClick={() =>
+                  trackEvent("back_to_booking", {
+                    cta_location: "plans_section",
+                    selected_plan: activeItinerary,
+                  })
+                }
+                className={`mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-[var(--color-sand)] px-5 py-3 text-sm font-semibold text-[var(--color-navy)] hover:bg-[var(--color-aqua)] ${primaryInteractiveClassName}`}
+              >
+                Montar minha reserva
+                <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+              </a>
             </div>
             <div className="space-y-4 text-white/74">
               {highlights.map((highlight, index) => (

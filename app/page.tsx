@@ -25,7 +25,7 @@ declare global {
   }
 }
 
-const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "";
+const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "5511956773322";
 
 const experienceCards = [
   {
@@ -34,8 +34,8 @@ const experienceCards = [
     image: "/pexels/coast-emerald.jpg",
   },
   {
-    title: "Conforto premium",
-    copy: "Ventura 230 com acabamento impecável, embarque privativo e atmosfera criada para relaxar com exclusividade.",
+    title: "Conforto a bordo",
+    copy: "Ventura 23 pes com embarque privativo e atmosfera criada para relaxar com exclusividade.",
     image: "/pexels/boats-aerial.jpg",
   },
   {
@@ -47,18 +47,19 @@ const experienceCards = [
 
 const plans = [
   {
-    id: "essencial",
-    label: "Plano Essencial",
-    title: "3 Ilhas entre Boiçucanga e Barra do Una",
-    price: "R$ 1.600",
-    duration: "2 a 4 horas",
-    capacity: "Até 7 passageiros",
-    embark: "Marina Canto do Rio",
-    tagline: "Meio período com cara de escapada privativa.",
-    idealFor: "Perfeito para casal, família pequena ou grupo que quer mar bonito sem comprometer o dia inteiro.",
+    id: "tres-ilhas",
+    label: "Preco promocional",
+    title: "Passeio das tres ilhas",
+    price: "R$ 1.600,00",
+    originalPrice: "R$ 2.300,00",
+    duration: "3 horas",
+    capacity: "Até 6 passageiros",
+    embark: "Saida de Boicucanga",
+    tagline: "Ilha dos Gatos, Ilha das Couves e As Ilhas em um roteiro compacto e certeiro.",
+    idealFor: "Perfeito para casal, familia pequena ou grupo que quer mar bonito, banho e fotos sem comprometer o dia inteiro.",
     summary:
-      "Passeio privativo ideal para quem quer curtir o mar com praticidade, visual bonito e tempo para banho nas 3 ilhas.",
-    benefits: ["Roteiro de Boiçucanga a Barra do Una", "Paradas nas 3 ilhas", "Tempo para banho e fotos", "Embarque prático na Marina Canto do Rio"],
+      "Passeio privativo ideal para quem quer curtir tres paradas classicas com praticidade, visual bonito e tempo para banho.",
+    benefits: ["Ilha dos Gatos", "Ilha das Couves", "As Ilhas", "Endereco do pier enviado apos a reserva"],
     secretTitle: "O melhor custo por memoria",
     secretCopy:
       "Esse plano funciona muito bem para quem quer sentir que fez algo especial sem transformar o passeio em uma grande producao.",
@@ -66,30 +67,71 @@ const plans = [
     image: "/pexels/boats-aerial.jpg",
   },
   {
-    id: "premium",
+    id: "montao-do-trigo",
+    label: "Roteiro exclusivo",
+    title: "Ilha Montao do Trigo",
+    price: "R$ 2.800,00",
+    originalPrice: null,
+    duration: "3 a 4 horas",
+    capacity: "Até 6 passageiros",
+    embark: "Saida de Boicucanga",
+    tagline: "Um passeio para quem quer ir alem do obvio e conhecer um visual marcante do litoral.",
+    idealFor: "Ideal para quem ja conhece os roteiros mais basicos e quer uma navegacao com cara de descoberta.",
+    summary:
+      "Roteiro privativo ate a Ilha Montao do Trigo, com navegacao cenica, pausa para contemplar e tempo para aproveitar o mar.",
+    benefits: ["Ilha Montao do Trigo", "Roteiro menos comum", "Navegacao de 3 a 4 horas", "Endereco do pier enviado apos a reserva"],
+    secretTitle: "A escolha de quem quer novidade",
+    secretCopy:
+      "Montao do Trigo tem apelo de descoberta. E o roteiro certo para vender exclusividade sem depender de um passeio muito longo.",
+    secretBullets: ["Menos previsivel", "Mais sensacao de roteiro especial", "Boa duracao para aproveitar sem pressa"],
+    image: "/pexels/coast-emerald.jpg",
+  },
+  {
+    id: "ilhabela",
     label: "Plano Premium",
     title: "Ilhabela com chance de avistamento de baleias",
-    price: "R$ 4.600",
-    duration: "Passeio estendido",
-    capacity: "Até 7 passageiros",
-    embark: "Marina Canto do Rio",
-    tagline: "A rota aspiracional para quem quer viver o dia inteiro no mar.",
+    price: "R$ 4.600,00",
+    originalPrice: null,
+    duration: "3 a 4 horas",
+    capacity: "Até 6 passageiros",
+    embark: "Saida de Boicucanga",
+    tagline: "Ilhabela em meio periodo, com possibilidade de avistamento de baleias na temporada.",
     idealFor: "Ideal para clientes que querem impressionar convidados, celebrar uma data ou transformar o passeio no evento principal.",
     summary:
-      "Experiência mais exclusiva para quem quer navegar até Ilhabela e aproveitar um roteiro mais longo, com possibilidade de avistar baleias na temporada.",
-    benefits: ["Navegação até Ilhabela", "Possibilidade de avistamento de baleia", "Experiência privativa de dia inteiro", "Roteiro mais completo e exclusivo"],
+      "Experiencia mais exclusiva para quem quer navegar ate Ilhabela e aproveitar um roteiro de 3 a 4 horas com possibilidade de avistar baleias.",
+    benefits: ["Navegacao ate Ilhabela", "Possibilidade de avistamento de baleias", "Duracao de 3 a 4 horas", "Endereco do pier enviado apos a reserva"],
     secretTitle: "O plano que vira historia",
     secretCopy:
       "Aqui o valor nao esta so na distancia. Esta na chance de viver um dia raro, com Ilhabela no roteiro e natureza fazendo parte da surpresa.",
     secretBullets: ["Mais tempo a bordo", "Mais impacto para datas especiais", "Mais chance de uma experiencia realmente incomum"],
     image: "/pexels/hero-sao-sebastiao.jpg",
   },
+  {
+    id: "personalizado",
+    label: "Sob medida",
+    title: "Passeio personalizado",
+    price: "Sob consulta",
+    originalPrice: null,
+    duration: "Personalizado",
+    capacity: "Até 6 passageiros",
+    embark: "Saida de Boicucanga",
+    tagline: "Quer conhecer outras praias e ilhas? A equipe monta o roteiro com voce.",
+    idealFor: "Perfeito para quem tem uma praia em mente, quer ajustar tempo de navegacao ou precisa de uma experiencia sob medida.",
+    summary:
+      "Converse com nossa equipe para criar um roteiro personalizado por praias, ilhas e paradas que facam sentido para o seu grupo.",
+    benefits: ["Roteiro criado com a equipe", "Praias e ilhas sob consulta", "Duracao combinada antes da reserva", "Endereco do pier enviado apos a reserva"],
+    secretTitle: "A rota que nasce da conversa",
+    secretCopy:
+      "Esse plano e para transformar uma ideia em passeio. Em vez de encaixar o cliente em uma rota pronta, a Marley desenha a experiencia com ele.",
+    secretBullets: ["Mais flexibilidade", "Mais aderencia ao perfil do grupo", "Boa opcao para pedidos especiais"],
+    image: "/pexels/turquoise-boats.jpg",
+  },
 ];
 
 const highlights = [
-  "Valores claros para facilitar a decisão ainda na call.",
-  "Embarque pela Marina Canto do Rio com atendimento direto.",
-  "Experiência pensada para casais, famílias e grupos pequenos.",
+  "Roteiros privativos com saida de Boicucanga.",
+  "O endereco do pier e enviado apos a confirmacao da reserva.",
+  "Experiencia pensada para casais, familias e grupos pequenos.",
 ];
 
 const primaryInteractiveClassName =
@@ -118,23 +160,14 @@ function fadeUp(delay = 0) {
 }
 
 function buildWhatsappHref(people: string, date: string, itinerary: string) {
-  const itineraryLabel = plans.find((item) => item.id === itinerary)?.label ?? "Plano personalizado";
+  void people;
+  void date;
+  void itinerary;
 
-  const text = [
-    "Oi, quero reservar um passeio de lancha com a Marley.",
-    `Pessoas: ${people || "a definir"}.`,
-    `Data desejada: ${date || "a definir"}.`,
-    `Interesse: ${itineraryLabel}.`,
-  ].join(" ");
-
-  const base = whatsappNumber
-    ? `https://wa.me/${whatsappNumber}`
-    : "https://api.whatsapp.com/send";
-
-  return `${base}?text=${encodeURIComponent(text)}`;
+  return `https://wa.me/${whatsappNumber}`;
 }
 
-const clientFacts = ["São Sebastião", "Marina Canto do Rio", "Até 7 passageiros"];
+const clientFacts = ["São Sebastião", "Saida de Boicucanga", "Até 6 passageiros"];
 
 export default function Home() {
   const shouldReduceMotion = useReducedMotion();
@@ -206,7 +239,7 @@ export default function Home() {
               <div className="flex min-w-0 items-center gap-3">
                 <span className="relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white/92 p-1 shadow-[0_10px_30px_rgba(0,0,0,0.18)] ring-1 ring-white/30">
                   <Image
-                    src="/images/sea-view.png"
+                    src="/images/logo-marley.png"
                     alt="Logo Marley Experiências no Mar"
                     width={56}
                     height={56}
@@ -268,8 +301,8 @@ export default function Home() {
                   {...fadeUp(0.16)}
                   className="mt-7 max-w-xl pl-1 text-base leading-8 text-white/78 sm:text-[1.08rem]"
                 >
-                  Passeios privativos de lancha com conforto e segurança, com embarque na Marina Canto do
-                  Rio e roteiros exclusivos pelo litoral norte.
+                  Passeios privativos de lancha com conforto e segurança, com saida de Boicucanga e
+                  endereco do pier enviado apos a confirmacao da reserva.
                 </motion.p>
 
                 <motion.div
@@ -342,9 +375,6 @@ export default function Home() {
                       </option>
                       <option value="6" className="text-[var(--color-navy)]">
                         6 pessoas
-                      </option>
-                      <option value="7" className="text-[var(--color-navy)]">
-                        7 pessoas
                       </option>
                     </select>
                   </label>
@@ -444,7 +474,7 @@ export default function Home() {
                 Planos de passeio
               </p>
               <h2 className="mt-4 text-balance font-display text-4xl leading-none tracking-[-0.03em] sm:text-5xl">
-                Cards com preço, duração e vantagens para fechar mais rápido com o cliente.
+                Escolha entre roteiros prontos ou crie um passeio personalizado com a equipe Marley.
               </h2>
             </div>
             <div className="space-y-4 text-white/74">
@@ -494,7 +524,7 @@ export default function Home() {
                         </h3>
                       </div>
                       <div className="rounded-full border border-white/18 bg-white/12 px-4 py-2 text-xs uppercase tracking-[0.22em] text-white/86 backdrop-blur-md">
-                        {activePlanIndex + 1}/2
+                        {activePlanIndex + 1}/{plans.length}
                       </div>
                     </div>
 
@@ -506,7 +536,10 @@ export default function Home() {
                           <p className="mt-2 font-display text-6xl leading-none text-[var(--color-sand)]">
                             {selectedPlan.price}
                           </p>
-                          <p className="mt-3 text-sm text-white/64">Passeio privativo para ate 7 passageiros.</p>
+                          <p className="mt-3 text-sm text-white/64">Passeio privativo para ate 6 passageiros.</p>
+                          {selectedPlan.originalPrice ? (
+                            <p className="mt-2 text-sm text-white/58 line-through">Valor real {selectedPlan.originalPrice}</p>
+                          ) : null}
                         </div>
 
                         <div className="grid gap-3">
@@ -670,8 +703,10 @@ export default function Home() {
               <div className="rounded-[1.6rem] border border-white/10 bg-white/6 p-5 text-white">
                 <p className="text-sm uppercase tracking-[0.22em] text-[var(--color-sand)]">Comparativo rapido</p>
                 <div className="mt-5 space-y-4 text-sm text-white/72">
-                  <p>Essencial: melhor entrada para vender experiencia privativa sem pesar na decisao.</p>
-                  <p>Premium: melhor escolha para data especial, roteiro longo e efeito memoravel.</p>
+                  <p>Tres ilhas: promocional de entrada para vender uma experiencia privativa e objetiva.</p>
+                  <p>Montao do Trigo: roteiro menos comum para quem quer sensacao de descoberta.</p>
+                  <p>Ilhabela: melhor escolha para quem busca um passeio com mais impacto.</p>
+                  <p>Personalizado: conversa direta para montar outras praias e ilhas.</p>
                 </div>
                 <div className="mt-6 flex gap-3">
                   <button
@@ -730,18 +765,18 @@ export default function Home() {
               Uma Ventura 23 pés para passeios elegantes e confortáveis no litoral.
             </h2>
             <p className="mt-6 max-w-xl text-base leading-7 text-[color:rgba(10,25,47,0.72)]">
-              A lancha une porte ideal para grupos pequenos, navegação agradável e embarque organizado na
-              Marina Canto do Rio, deixando a experiência mais fluida desde a chegada.
+              A lancha une porte ideal para grupos pequenos, navegacao agradavel e saida de Boicucanga.
+              O endereco do pier de embarque e enviado apos a confirmacao do passeio.
             </p>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
               <div className="rounded-[1.4rem] bg-[var(--color-seafoam)] px-4 py-4">
                 <p className="text-sm uppercase tracking-[0.2em] text-[var(--color-sand)]">Capacidade</p>
-                <p className="mt-2 text-lg text-[var(--color-navy)]">Até 7 passageiros</p>
+                <p className="mt-2 text-lg text-[var(--color-navy)]">Até 6 passageiros</p>
               </div>
               <div className="rounded-[1.4rem] bg-[var(--color-seafoam)] px-4 py-4">
                 <p className="text-sm uppercase tracking-[0.2em] text-[var(--color-sand)]">Embarque</p>
-                <p className="mt-2 text-lg text-[var(--color-navy)]">Marina Canto do Rio</p>
+                <p className="mt-2 text-lg text-[var(--color-navy)]">Saida de Boicucanga</p>
               </div>
             </div>
           </motion.div>
@@ -774,7 +809,7 @@ export default function Home() {
               <div className="relative">
                 <div className="absolute inset-0 scale-125 rounded-full bg-[radial-gradient(circle,rgba(114,213,242,0.26),transparent_60%)] blur-xl" />
                 <Image
-                  src="/images/sea-view.png"
+                  src="/images/logo-marley.png"
                   alt="Logo Marley"
                   width={220}
                   height={164}
@@ -788,11 +823,11 @@ export default function Home() {
               <div className="mt-8 grid w-full gap-3 text-left">
                 <div className="flex items-center gap-3 rounded-2xl bg-[var(--color-seafoam)] px-4 py-3">
                   <MapPinned aria-hidden="true" className="h-4 w-4 shrink-0 text-[var(--color-sand)]" />
-                  <span>Embarque na Marina Canto do Rio</span>
+                  <span>Saida de Boicucanga</span>
                 </div>
                 <div className="flex items-center gap-3 rounded-2xl bg-[var(--color-seafoam)] px-4 py-3">
                   <ShipWheel aria-hidden="true" className="h-4 w-4 shrink-0 text-[var(--color-sand)]" />
-                  <span>Passeios privativos com até 7 passageiros</span>
+                  <span>Passeios privativos com até 6 passageiros</span>
                 </div>
               </div>
             </div>

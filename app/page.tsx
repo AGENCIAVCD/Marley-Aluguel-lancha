@@ -178,6 +178,8 @@ const highlights = [
 
 const primaryInteractiveClassName =
   "outline-none transition focus-visible:ring-2 focus-visible:ring-[var(--color-aqua)] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent";
+const planRotationIntervalMs = 5200;
+const experienceRotationIntervalMs = 4200;
 
 function trackEvent(eventName: string, payload: Record<string, unknown>) {
   if (typeof window === "undefined") {
@@ -311,7 +313,7 @@ export default function Home() {
 
       setActiveItinerary(plans[nextIndex].id);
       setRevealedPlan(null);
-    }, 4200);
+    }, planRotationIntervalMs);
 
     return () => window.clearInterval(timer);
   }, [activeItinerary, isPlanRevealed, shouldReduceMotion]);
@@ -353,7 +355,7 @@ export default function Home() {
           behavior: "smooth",
         });
       }
-    }, 3600);
+    }, experienceRotationIntervalMs);
 
     return () => window.clearInterval(timer);
   }, [activeExperience, isExperienceSectionVisible, shouldReduceMotion]);

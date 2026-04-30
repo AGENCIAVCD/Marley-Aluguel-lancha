@@ -215,7 +215,13 @@ function formatPreferredDate(date: string) {
   return `${day}/${month}/${year}`;
 }
 
-function buildWhatsappHref(people: string, date: string, itinerary: string) {
+function buildGenericWhatsappHref() {
+  const message = "Olá, Marley! Tenho interesse em reservar um passeio de lancha. Podem me passar mais informações?";
+
+  return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+}
+
+function buildHeroWhatsappHref(people: string, date: string, itinerary: string) {
   const plan = plans.find((item) => item.id === itinerary) ?? plans[0];
   const guestsLabel = `${people} ${people === "1" ? "pessoa" : "pessoas"}`;
   const message = [
@@ -253,7 +259,8 @@ export default function Home() {
   const activePlanIndex = plans.findIndex((plan) => plan.id === activeItinerary);
   const selectedPlan = plans[activePlanIndex] ?? plans[0];
   const isPlanRevealed = revealedPlan === selectedPlan.id;
-  const whatsappHref = buildWhatsappHref(people, date, activeItinerary);
+  const heroWhatsappHref = buildHeroWhatsappHref(people, date, activeItinerary);
+  const genericWhatsappHref = buildGenericWhatsappHref();
 
   function selectPlan(planId: string) {
     const plan = plans.find((item) => item.id === planId) ?? plans[0];
@@ -424,7 +431,7 @@ export default function Home() {
               </div>
 
               <a
-                href={whatsappHref}
+                href={genericWhatsappHref}
                 target="_blank"
                 rel="noreferrer"
                 onClick={() =>
@@ -470,7 +477,7 @@ export default function Home() {
                   className="mt-9 flex flex-col gap-3 pl-1 sm:flex-row"
                 >
                   <a
-                    href={whatsappHref}
+                    href={heroWhatsappHref}
                     target="_blank"
                     rel="noreferrer"
                     onClick={() =>
@@ -584,7 +591,7 @@ export default function Home() {
                   </label>
 
                   <a
-                    href={whatsappHref}
+                    href={heroWhatsappHref}
                     target="_blank"
                     rel="noreferrer"
                     onClick={() =>
@@ -863,7 +870,7 @@ export default function Home() {
 
                       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                         <a
-                          href={buildWhatsappHref(people, date, selectedPlan.id)}
+                          href={genericWhatsappHref}
                           target="_blank"
                           rel="noreferrer"
                           onClick={() =>
@@ -938,7 +945,7 @@ export default function Home() {
                           </div>
                         ))}
                         <a
-                          href={buildWhatsappHref(people, date, selectedPlan.id)}
+                          href={genericWhatsappHref}
                           target="_blank"
                           rel="noreferrer"
                           onClick={() =>
@@ -1183,7 +1190,7 @@ export default function Home() {
               </h2>
             </div>
             <a
-              href={whatsappHref}
+              href={genericWhatsappHref}
               target="_blank"
               rel="noreferrer"
               onClick={() =>
@@ -1204,7 +1211,7 @@ export default function Home() {
       </section>
 
       <a
-        href={whatsappHref}
+        href={genericWhatsappHref}
         target="_blank"
         rel="noreferrer"
         onClick={() =>

@@ -734,7 +734,10 @@ export default function Home() {
 
       <section className="mx-auto max-w-7xl px-5 py-18 sm:px-8 lg:px-12 lg:py-24">
         <div className="grid gap-6 overflow-hidden rounded-[2.2rem] border border-[rgba(10,25,47,0.08)] bg-white p-6 shadow-[0_30px_80px_rgba(10,25,47,0.08)] lg:grid-cols-[1.05fr_0.95fr] lg:p-8">
-          <motion.div {...fadeUp()} className="relative min-h-[22rem] overflow-hidden rounded-[1.8rem]">
+          <motion.div
+            {...fadeUp()}
+            className="relative min-h-[22rem] overflow-hidden rounded-[2rem] border border-white shadow-[0_28px_80px_rgba(10,25,47,0.22)] ring-1 ring-[rgba(10,25,47,0.08)]"
+          >
             <motion.div
               whileHover={shouldReduceMotion ? undefined : { scale: 1.04 }}
               transition={{ duration: 0.7 }}

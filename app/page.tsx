@@ -17,7 +17,7 @@ import {
   Users,
   Waves,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 declare global {
   interface Window {
@@ -203,8 +203,10 @@ export default function Home() {
   const shouldReduceMotion = useReducedMotion();
   const [activeItinerary, setActiveItinerary] = useState(plans[0].id);
   const [revealedPlan, setRevealedPlan] = useState<string | null>(null);
+  const [activeExperience, setActiveExperience] = useState(0);
   const [people, setPeople] = useState("4");
   const [date, setDate] = useState("");
+  const experienceRefs = useRef<Array<HTMLElement | null>>([]);
   const { scrollYProgress } = useScroll();
   const heroY = useTransform(scrollYProgress, [0, 1], [0, shouldReduceMotion ? 0 : -140]);
 
@@ -228,6 +230,21 @@ export default function Home() {
   function movePlan(direction: 1 | -1) {
     const nextIndex = (activePlanIndex + direction + plans.length) % plans.length;
     selectPlan(plans[nextIndex].id);
+  }
+
+  function selectExperience(index: number) {
+    const nextIndex = (index + experienceCards.length) % experienceCards.length;
+
+    setActiveExperience(nextIndex);
+    experienceRefs.current[nextIndex]?.scrollIntoView({
+      behavior: shouldReduceMotion ? "auto" : "smooth",
+      inline: "center",
+      block: "nearest",
+    });
+  }
+
+  function moveExperience(direction: 1 | -1) {
+    selectExperience(activeExperience + direction);
   }
 
   useEffect(() => {
@@ -472,22 +489,85 @@ export default function Home() {
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-18 sm:px-8 lg:px-12 lg:py-24">
-        <motion.div {...fadeUp()} className="max-w-2xl">
-          <p className="font-sans text-[0.72rem] font-semibold uppercase tracking-[0.4em] text-[var(--color-navy)]/72">
-            Experiência no mar
-          </p>
-          <h2 className="mt-4 text-balance font-display text-4xl leading-none tracking-[-0.03em] sm:text-5xl">
-            Cada parada transforma o passeio de lancha em uma memória marcante.
-          </h2>
+        <motion.div {...fadeUp()} className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-2xl">
+            <p className="font-sans text-[0.72rem] font-semibold uppercase tracking-[0.4em] text-[var(--color-navy)]/72">
+              Experiência no mar
+            </p>
+            <h2 className="mt-4 text-balance font-display text-4xl leading-none tracking-[-0.03em] sm:text-5xl">
+              Cada parada transforma o passeio de lancha em uma memória marcante.
+            </h2>
+          </div>
+          <div className="flex items-center gap-3">
+            <span className="rounded-full border border-[rgba(10,25,47,0.1)] bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-navy)]/68 shadow-[0_14px_34px_rgba(10,25,47,0.07)]">
+              Deslize para ver mais
+            </span>
+            <div className="hidden gap-2 sm:flex">
+              <button
+                type="button"
+                onClick={() => moveExperience(-1)}
+                className={`inline-flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(10,25,47,0.12)] bg-white text-[var(--color-navy)] shadow-[0_14px_34px_rgba(10,25,47,0.08)] hover:bg-[var(--color-navy)] hover:text-white ${primaryInteractiveClassName}`}
+                aria-label="Experiência anterior"
+              >
+                <ChevronLeft aria-hidden="true" className="h-5 w-5" />
+              </button>
+              <button
+                type="button"
+                onClick={() => moveExperience(1)}
+                className={`inline-flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(10,25,47,0.12)] bg-white text-[var(--color-navy)] shadow-[0_14px_34px_rgba(10,25,47,0.08)] hover:bg-[var(--color-navy)] hover:text-white ${primaryInteractiveClassName}`}
+                aria-label="Próxima experiência"
+              >
+                <ChevronRight aria-hidden="true" className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
         </motion.div>
 
         <div className="relative mt-10 overflow-hidden rounded-[2.6rem]">
           <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-[linear-gradient(90deg,var(--background),transparent)] sm:w-16" />
           <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-[linear-gradient(270deg,var(--background),transparent)] sm:w-16" />
+          <button
+            type="button"
+            onClick={() => moveExperience(-1)}
+            className={`absolute left-2 top-1/2 z-20 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/70 bg-white/92 text-[var(--color-navy)] shadow-[0_20px_50px_rgba(10,25,47,0.18)] backdrop-blur-md hover:bg-[var(--color-sand)] sm:hidden ${primaryInteractiveClassName}`}
+            aria-label="Experiência anterior"
+          >
+            <ChevronLeft aria-hidden="true" className="h-5 w-5" />
+          </button>
+          <button
+            type="button"
+            onClick={() => moveExperience(1)}
+            className={`absolute right-2 top-1/2 z-20 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/70 bg-white/92 text-[var(--color-navy)] shadow-[0_20px_50px_rgba(10,25,47,0.18)] backdrop-blur-md hover:bg-[var(--color-sand)] sm:hidden ${primaryInteractiveClassName}`}
+            aria-label="Próxima experiência"
+          >
+            <ChevronRight aria-hidden="true" className="h-5 w-5" />
+          </button>
 
-          <div className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-1 py-3 [scrollbar-width:none] sm:gap-6 [&::-webkit-scrollbar]:hidden">
+          <div
+            onScroll={(event) => {
+              const container = event.currentTarget;
+              const center = container.scrollLeft + container.clientWidth / 2;
+              const nextIndex = Array.from(container.children).reduce(
+                (closestIndex, child, index) => {
+                  const element = child as HTMLElement;
+                  const childCenter = element.offsetLeft + element.offsetWidth / 2;
+                  const closestElement = container.children[closestIndex] as HTMLElement;
+                  const closestCenter = closestElement.offsetLeft + closestElement.offsetWidth / 2;
+
+                  return Math.abs(childCenter - center) < Math.abs(closestCenter - center) ? index : closestIndex;
+                },
+                0,
+              );
+
+              setActiveExperience(nextIndex);
+            }}
+            className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-1 py-3 [scrollbar-width:none] sm:gap-6 [&::-webkit-scrollbar]:hidden"
+          >
             {experienceCards.map((card, index) => (
               <motion.article
+                ref={(node) => {
+                  experienceRefs.current[index] = node;
+                }}
                 key={card.title}
                 {...fadeUp(index * 0.08)}
                 className="group relative min-h-[28rem] min-w-[min(82vw,24rem)] snap-center overflow-hidden rounded-[2.4rem] bg-[var(--color-navy)] shadow-[0_26px_70px_rgba(10,25,47,0.18)] ring-1 ring-white/70 sm:min-w-[24rem] lg:min-w-[26rem]"
@@ -514,6 +594,25 @@ export default function Home() {
                   <p className="mt-3 max-w-sm text-sm leading-6 text-white/74">{card.copy}</p>
                 </div>
               </motion.article>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-5 flex items-center justify-center gap-3">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-navy)]/54">
+            {activeExperience + 1}/{experienceCards.length}
+          </span>
+          <div className="flex items-center gap-2">
+            {experienceCards.map((card, index) => (
+              <button
+                key={card.title}
+                type="button"
+                onClick={() => selectExperience(index)}
+                className={`h-2.5 rounded-full transition-all ${
+                  activeExperience === index ? "w-9 bg-[var(--color-navy)]" : "w-2.5 bg-[rgba(10,25,47,0.18)] hover:bg-[rgba(10,25,47,0.38)]"
+                } ${primaryInteractiveClassName}`}
+                aria-label={`Ver ${card.title}`}
+              />
             ))}
           </div>
         </div>

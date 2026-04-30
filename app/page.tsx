@@ -543,7 +543,7 @@ export default function Home() {
               <motion.div
                 animate={{ rotateY: isPlanRevealed ? 180 : 0 }}
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="relative min-h-[50rem] [transform-style:preserve-3d] lg:min-h-[44rem]"
+                className="relative min-h-[42rem] [transform-style:preserve-3d] lg:min-h-[36rem]"
               >
                 <div className="absolute inset-0 overflow-hidden bg-[var(--color-navy)] [backface-visibility:hidden]">
                   <Image
@@ -554,7 +554,7 @@ export default function Home() {
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,25,47,0.94)_0%,rgba(10,25,47,0.78)_44%,rgba(10,25,47,0.24)_100%)]" />
-                  <div className="relative flex min-h-[50rem] flex-col justify-between p-6 text-white sm:p-8 lg:min-h-[44rem] lg:p-10">
+                  <div className="relative flex min-h-[42rem] flex-col justify-between p-6 text-white sm:p-8 lg:min-h-[36rem] lg:p-10">
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <p className="font-sans text-[0.7rem] uppercase tracking-[0.36em] text-[var(--color-sand)]">
@@ -656,7 +656,7 @@ export default function Home() {
                       className="object-cover"
                     />
                   </div>
-                  <div className="relative flex min-h-[50rem] flex-col justify-between p-6 sm:p-8 lg:min-h-[44rem] lg:p-10">
+                  <div className="relative flex min-h-[42rem] flex-col justify-between p-6 sm:p-8 lg:min-h-[36rem] lg:p-10">
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <p className="font-sans text-[0.7rem] uppercase tracking-[0.34em] text-[var(--color-navy)]/60">

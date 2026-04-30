@@ -689,7 +689,7 @@ export default function Home() {
               <motion.div
                 animate={{ rotateY: isPlanRevealed ? 180 : 0 }}
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="relative min-h-[50rem] [transform-style:preserve-3d] sm:min-h-[46rem] lg:min-h-[34rem]"
+                className="relative min-h-[50rem] [transform-style:preserve-3d] sm:min-h-[46rem] lg:min-h-[38rem]"
               >
                 <div className="absolute inset-0 overflow-hidden bg-[var(--color-navy)] [backface-visibility:hidden]">
                   <Image
@@ -700,13 +700,13 @@ export default function Home() {
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,25,47,0.94)_0%,rgba(10,25,47,0.78)_44%,rgba(10,25,47,0.24)_100%)]" />
-                  <div className="relative flex min-h-[50rem] flex-col justify-between p-5 text-white sm:min-h-[46rem] sm:p-8 lg:min-h-[34rem] lg:p-10">
+                  <div className="relative flex min-h-[50rem] flex-col justify-between p-5 text-white sm:min-h-[46rem] sm:p-8 lg:min-h-[38rem] lg:p-10">
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <p className="font-sans text-[0.7rem] uppercase tracking-[0.36em] text-[var(--color-sand)]">
                           {selectedPlan.label}
                         </p>
-                        <h3 className="mt-3 max-w-[12ch] font-display text-4xl leading-none sm:mt-4 sm:text-6xl">
+                        <h3 className="mt-3 max-w-[16ch] font-display text-4xl leading-none sm:mt-4 sm:text-6xl">
                           {selectedPlan.title}
                         </h3>
                       </div>
@@ -802,13 +802,13 @@ export default function Home() {
                       className="object-cover"
                     />
                   </div>
-                  <div className="relative flex min-h-[50rem] flex-col justify-between p-5 sm:min-h-[46rem] sm:p-8 lg:min-h-[34rem] lg:p-10">
+                  <div className="relative flex min-h-[50rem] flex-col justify-between p-5 sm:min-h-[46rem] sm:p-8 lg:min-h-[38rem] lg:p-10">
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <p className="font-sans text-[0.7rem] uppercase tracking-[0.34em] text-[var(--color-navy)]/60">
                           Carta virada
                         </p>
-                        <h3 className="mt-4 max-w-[12ch] font-display text-5xl leading-none sm:text-6xl">
+                        <h3 className="mt-4 max-w-[16ch] font-display text-5xl leading-none sm:text-6xl">
                           {selectedPlan.secretTitle}
                         </h3>
                       </div>

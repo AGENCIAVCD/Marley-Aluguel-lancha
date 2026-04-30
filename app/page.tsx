@@ -315,13 +315,16 @@ export default function Home() {
       />
       <section className="relative min-h-[100svh] overflow-hidden bg-[var(--color-navy)] text-white">
         <motion.div style={{ y: heroY }} className="absolute inset-0">
-          <Image
-            src="/pexels/hero-sao-sebastiao.jpg"
-            alt="Aluguel de lancha em São Sebastião com vista aérea do litoral norte"
-            fill
-            priority
-            sizes="100vw"
-            className="scale-[1.06] object-cover object-[center_48%]"
+          <video
+            aria-hidden="true"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            poster="/pexels/hero-sao-sebastiao.jpg"
+            className="h-full w-full scale-[1.06] object-cover object-[center_48%]"
+            src="/videos/hero-marley-lancha-optimized.mp4"
           />
         </motion.div>
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(6,16,31,0.88)_0%,rgba(6,16,31,0.72)_24%,rgba(6,16,31,0.4)_48%,rgba(6,16,31,0.18)_68%,rgba(6,16,31,0.12)_100%)]" />

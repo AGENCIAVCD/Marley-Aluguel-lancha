@@ -3,12 +3,17 @@
 import Image from "next/image";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import {
+  Anchor,
   ArrowUpRight,
   CalendarDays,
+  ChevronLeft,
+  ChevronRight,
   Clock3,
+  Eye,
   MapPinned,
   MessageCircle,
   ShipWheel,
+  Sparkles,
   Users,
   Waves,
 } from "lucide-react";
@@ -49,9 +54,15 @@ const plans = [
     duration: "2 a 4 horas",
     capacity: "Até 7 passageiros",
     embark: "Marina Canto do Rio",
+    tagline: "Meio período com cara de escapada privativa.",
+    idealFor: "Perfeito para casal, família pequena ou grupo que quer mar bonito sem comprometer o dia inteiro.",
     summary:
       "Passeio privativo ideal para quem quer curtir o mar com praticidade, visual bonito e tempo para banho nas 3 ilhas.",
-    benefits: ["Roteiro de Boiçucanga a Barra do Una", "Paradas nas 3 ilhas", "Ótimo para meio período", "Embarque prático na Marina Canto do Rio"],
+    benefits: ["Roteiro de Boiçucanga a Barra do Una", "Paradas nas 3 ilhas", "Tempo para banho e fotos", "Embarque prático na Marina Canto do Rio"],
+    secretTitle: "O melhor custo por memoria",
+    secretCopy:
+      "Esse plano funciona muito bem para quem quer sentir que fez algo especial sem transformar o passeio em uma grande producao.",
+    secretBullets: ["Sai bonito nas fotos", "Cabe na agenda do fim de semana", "Entrega experiencia premium com investimento menor"],
     image: "/pexels/boats-aerial.jpg",
   },
   {
@@ -62,9 +73,15 @@ const plans = [
     duration: "Passeio estendido",
     capacity: "Até 7 passageiros",
     embark: "Marina Canto do Rio",
+    tagline: "A rota aspiracional para quem quer viver o dia inteiro no mar.",
+    idealFor: "Ideal para clientes que querem impressionar convidados, celebrar uma data ou transformar o passeio no evento principal.",
     summary:
       "Experiência mais exclusiva para quem quer navegar até Ilhabela e aproveitar um roteiro mais longo, com possibilidade de avistar baleias na temporada.",
     benefits: ["Navegação até Ilhabela", "Possibilidade de avistamento de baleia", "Experiência privativa de dia inteiro", "Roteiro mais completo e exclusivo"],
+    secretTitle: "O plano que vira historia",
+    secretCopy:
+      "Aqui o valor nao esta so na distancia. Esta na chance de viver um dia raro, com Ilhabela no roteiro e natureza fazendo parte da surpresa.",
+    secretBullets: ["Mais tempo a bordo", "Mais impacto para datas especiais", "Mais chance de uma experiencia realmente incomum"],
     image: "/pexels/hero-sao-sebastiao.jpg",
   },
 ];
@@ -122,12 +139,44 @@ const clientFacts = ["São Sebastião", "Marina Canto do Rio", "Até 7 passageir
 export default function Home() {
   const shouldReduceMotion = useReducedMotion();
   const [activeItinerary, setActiveItinerary] = useState(plans[0].id);
+  const [revealedPlan, setRevealedPlan] = useState<string | null>(null);
   const [people, setPeople] = useState("4");
   const [date, setDate] = useState("");
   const { scrollYProgress } = useScroll();
   const heroY = useTransform(scrollYProgress, [0, 1], [0, shouldReduceMotion ? 0 : -140]);
 
+  const activePlanIndex = plans.findIndex((plan) => plan.id === activeItinerary);
+  const selectedPlan = plans[activePlanIndex] ?? plans[0];
+  const isPlanRevealed = revealedPlan === selectedPlan.id;
   const whatsappHref = buildWhatsappHref(people, date, activeItinerary);
+
+  function selectPlan(planId: string) {
+    const plan = plans.find((item) => item.id === planId) ?? plans[0];
+
+    setActiveItinerary(plan.id);
+    setRevealedPlan(null);
+    trackEvent("select_plan", {
+      selected_plan: plan.id,
+      plan_label: plan.label,
+      plan_price: plan.price,
+    });
+  }
+
+  function movePlan(direction: 1 | -1) {
+    const nextIndex = (activePlanIndex + direction + plans.length) % plans.length;
+    selectPlan(plans[nextIndex].id);
+  }
+
+  function togglePlanSecret() {
+    const nextValue = isPlanRevealed ? null : selectedPlan.id;
+
+    setRevealedPlan(nextValue);
+    trackEvent("reveal_plan_secret", {
+      plan: selectedPlan.id,
+      plan_label: selectedPlan.label,
+      state: nextValue ? "open" : "closed",
+    });
+  }
 
   return (
     <main className="overflow-x-hidden bg-[var(--color-seafoam)] text-[var(--color-navy)]">
@@ -410,154 +459,238 @@ export default function Home() {
             </div>
           </motion.div>
 
-          <div className="mt-10 grid gap-6 lg:grid-cols-2">
-            {plans.map((plan, index) => {
-              const active = plan.id === activeItinerary;
-
-              return (
-                <motion.article
-                  key={plan.id}
-                  {...fadeUp(index * 0.08)}
-                  className={`overflow-hidden rounded-[2rem] border p-6 lg:p-8 ${
-                    active
-                      ? "border-[var(--color-sand)] bg-white text-[var(--color-navy)] shadow-[0_28px_80px_rgba(0,0,0,0.18)]"
-                      : "border-white/10 bg-white/5 text-white"
-                  }`}
-                >
-                  <div className="flex flex-wrap items-start justify-between gap-4">
-                    <div>
-                      <p
-                        className={`font-sans text-[0.68rem] uppercase tracking-[0.35em] ${
-                          active ? "text-[var(--color-sand)]" : "text-[var(--color-sand)]"
-                        }`}
-                      >
-                        {plan.label}
-                      </p>
-                      <h3 className="mt-3 max-w-[14ch] text-balance font-display text-4xl leading-none">
-                        {plan.title}
-                      </h3>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setActiveItinerary(plan.id);
-                        trackEvent("select_plan", {
-                          selected_plan: plan.id,
-                          plan_label: plan.label,
-                          plan_price: plan.price,
-                        });
-                      }}
-                      className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] ${
-                        active
-                          ? `border-[var(--color-sand)] bg-[var(--color-sand)]/12 text-[var(--color-navy)] ${primaryInteractiveClassName}`
-                          : `border-white/18 bg-white/8 text-white ${primaryInteractiveClassName}`
-                      }`}
-                    >
-                      {active ? "Selecionado" : "Selecionar"}
-                    </button>
-                  </div>
-
-                  <div className="mt-6 flex flex-wrap items-center gap-3">
-                    <div
-                      className={`rounded-full px-4 py-2 text-sm ${
-                        active ? "bg-[var(--color-navy)] text-white" : "bg-white/10 text-white"
-                      }`}
-                    >
-                      {plan.price}
-                    </div>
-                    <div
-                      className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm ${
-                        active ? "border-[var(--color-navy)]/10 bg-[var(--color-navy)]/6" : "border-white/10 bg-white/6"
-                      }`}
-                    >
-                      <Clock3 aria-hidden="true" className="h-4 w-4 text-[var(--color-sand)]" />
-                      {plan.duration}
-                    </div>
-                    <div
-                      className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm ${
-                        active ? "border-[var(--color-navy)]/10 bg-[var(--color-navy)]/6" : "border-white/10 bg-white/6"
-                      }`}
-                    >
-                      <Users aria-hidden="true" className="h-4 w-4 text-[var(--color-sand)]" />
-                      {plan.capacity}
-                    </div>
-                  </div>
-
-                  <p className={`mt-5 max-w-xl text-base leading-7 ${active ? "text-[var(--color-navy)]/76" : "text-white/74"}`}>
-                    {plan.summary}
-                  </p>
-
-                  <div className="mt-6 grid gap-3">
-                    {plan.benefits.map((benefit) => (
-                      <div
-                        key={benefit}
-                        className={`rounded-2xl border px-4 py-3 text-sm ${
-                          active ? "border-[var(--color-navy)]/10 bg-[var(--color-navy)]/4" : "border-white/10 bg-white/6 text-white/86"
-                        }`}
-                      >
-                        {benefit}
+          <div className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_21rem] lg:items-stretch">
+            <motion.div
+              key={selectedPlan.id}
+              initial={{ opacity: 0, x: shouldReduceMotion ? 0 : 28 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="relative min-h-[44rem] overflow-hidden rounded-[2.2rem] bg-white text-[var(--color-navy)] shadow-[0_34px_110px_rgba(0,0,0,0.28)]"
+            >
+              <motion.div
+                animate={{ rotateY: isPlanRevealed ? 180 : 0 }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                className="relative min-h-[44rem] [transform-style:preserve-3d]"
+              >
+                <div className="absolute inset-0 overflow-hidden [backface-visibility:hidden]">
+                  <Image
+                    src={selectedPlan.image}
+                    alt={selectedPlan.title}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 64vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,25,47,0.94)_0%,rgba(10,25,47,0.78)_44%,rgba(10,25,47,0.24)_100%)]" />
+                  <div className="relative flex min-h-[44rem] flex-col justify-between p-6 text-white sm:p-8 lg:p-10">
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <p className="font-sans text-[0.7rem] uppercase tracking-[0.36em] text-[var(--color-sand)]">
+                          {selectedPlan.label}
+                        </p>
+                        <h3 className="mt-4 max-w-[12ch] font-display text-5xl leading-none sm:text-6xl">
+                          {selectedPlan.title}
+                        </h3>
                       </div>
-                    ))}
-                  </div>
+                      <div className="rounded-full border border-white/18 bg-white/12 px-4 py-2 text-xs uppercase tracking-[0.22em] text-white/86 backdrop-blur-md">
+                        {activePlanIndex + 1}/2
+                      </div>
+                    </div>
 
-                  <div className="mt-6 flex items-center gap-3 text-sm">
-                    <MapPinned aria-hidden="true" className="h-4 w-4 shrink-0 text-[var(--color-sand)]" />
-                    <span className={active ? "text-[var(--color-navy)]/76" : "text-white/74"}>
-                      Embarque em {plan.embark}
-                    </span>
-                  </div>
+                    <div className="max-w-3xl">
+                      <p className="max-w-md text-lg leading-8 text-white/78">{selectedPlan.tagline}</p>
+                      <div className="mt-8 grid gap-4 md:grid-cols-[0.86fr_1fr] md:items-end">
+                        <div className="rounded-[1.6rem] border border-white/16 bg-white/12 p-5 backdrop-blur-md">
+                          <p className="text-sm uppercase tracking-[0.22em] text-white/62">Investimento</p>
+                          <p className="mt-2 font-display text-6xl leading-none text-[var(--color-sand)]">
+                            {selectedPlan.price}
+                          </p>
+                          <p className="mt-3 text-sm text-white/64">Passeio privativo para ate 7 passageiros.</p>
+                        </div>
 
-                  <div className="relative mt-8 min-h-[16rem] overflow-hidden rounded-[1.5rem]">
-                    <motion.div
-                      whileHover={shouldReduceMotion ? undefined : { scale: 1.04, y: -6 }}
-                      transition={{ duration: 0.7 }}
-                      className="absolute inset-0"
-                    >
-                      <Image
-                        src={plan.image}
-                        alt={plan.title}
-                        fill
-                        sizes="(max-width: 1024px) 100vw, 42vw"
-                        className="object-cover"
-                      />
-                    </motion.div>
-                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,25,47,0.04)_20%,rgba(10,25,47,0.84)_100%)]" />
-                    <div className="absolute inset-x-0 bottom-0 p-5 text-white">
-                      <p className="font-sans text-[0.68rem] uppercase tracking-[0.35em] text-[var(--color-sand)]">
-                        Ventura 23 pés
-                      </p>
-                      <p className="mt-2 max-w-sm text-sm leading-6 text-white/76">
-                        Lancha da Marley preparada para uma experiência confortável, segura e privativa.
-                      </p>
+                        <div className="grid gap-3">
+                          <div className="grid grid-cols-2 gap-3">
+                            <div className="rounded-[1.2rem] border border-white/12 bg-white/10 p-4">
+                              <Clock3 aria-hidden="true" className="h-4 w-4 text-[var(--color-sand)]" />
+                              <p className="mt-3 text-sm text-white/64">Duracao</p>
+                              <p className="mt-1 font-semibold">{selectedPlan.duration}</p>
+                            </div>
+                            <div className="rounded-[1.2rem] border border-white/12 bg-white/10 p-4">
+                              <Users aria-hidden="true" className="h-4 w-4 text-[var(--color-sand)]" />
+                              <p className="mt-3 text-sm text-white/64">Grupo</p>
+                              <p className="mt-1 font-semibold">{selectedPlan.capacity}</p>
+                            </div>
+                          </div>
+                          <div className="rounded-[1.2rem] border border-white/12 bg-white/10 p-4">
+                            <MapPinned aria-hidden="true" className="h-4 w-4 text-[var(--color-sand)]" />
+                            <p className="mt-3 text-sm text-white/64">Embarque</p>
+                            <p className="mt-1 font-semibold">{selectedPlan.embark}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                        {selectedPlan.benefits.map((benefit) => (
+                          <div key={benefit} className="flex items-start gap-3 border-t border-white/12 pt-3 text-sm text-white/84">
+                            <Sparkles aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-sand)]" />
+                            <span>{benefit}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                        <a
+                          href={buildWhatsappHref(people, date, selectedPlan.id)}
+                          target="_blank"
+                          rel="noreferrer"
+                          onClick={() =>
+                            trackEvent("whatsapp_click", {
+                              cta_location: "pricing_chart",
+                              plan: selectedPlan.id,
+                              plan_label: selectedPlan.label,
+                              plan_price: selectedPlan.price,
+                              guests: people,
+                              preferred_date: date || "a_definir",
+                            })
+                          }
+                          className={`inline-flex items-center justify-center gap-2 rounded-full bg-[var(--color-sand)] px-6 py-4 text-sm font-semibold text-[var(--color-navy)] hover:bg-[var(--color-aqua)] ${primaryInteractiveClassName}`}
+                        >
+                          Reservar este plano
+                          <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+                        </a>
+                        <button
+                          type="button"
+                          onClick={togglePlanSecret}
+                          className={`inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-4 text-sm font-semibold text-white hover:bg-white/10 ${primaryInteractiveClassName}`}
+                        >
+                          Ver detalhe secreto
+                          <Eye aria-hidden="true" className="h-4 w-4" />
+                        </button>
+                      </div>
                     </div>
                   </div>
+                </div>
 
-                  <a
-                    href={buildWhatsappHref(people, date, plan.id)}
-                    target="_blank"
-                    rel="noreferrer"
-                    onClick={() =>
-                      trackEvent("whatsapp_click", {
-                        cta_location: "plan_card",
-                        plan: plan.id,
-                        plan_label: plan.label,
-                        plan_price: plan.price,
-                        guests: people,
-                        preferred_date: date || "a_definir",
-                      })
-                    }
-                    className={`mt-8 inline-flex items-center gap-2 rounded-full px-6 py-4 text-sm font-semibold ${
-                      active
-                        ? `bg-[var(--color-navy)] text-white hover:bg-[var(--color-navy)]/88 ${primaryInteractiveClassName}`
-                        : `bg-[var(--color-sand)] text-[var(--color-navy)] hover:bg-[var(--color-aqua)] ${primaryInteractiveClassName}`
-                    }`}
+                <div className="absolute inset-0 overflow-hidden bg-[var(--color-sand)] text-[var(--color-navy)] [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                  <div className="absolute inset-0 opacity-[0.18]">
+                    <Image
+                      src={selectedPlan.image}
+                      alt=""
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 64vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="relative flex min-h-[44rem] flex-col justify-between p-6 sm:p-8 lg:p-10">
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <p className="font-sans text-[0.7rem] uppercase tracking-[0.34em] text-[var(--color-navy)]/60">
+                          Carta virada
+                        </p>
+                        <h3 className="mt-4 max-w-[12ch] font-display text-5xl leading-none sm:text-6xl">
+                          {selectedPlan.secretTitle}
+                        </h3>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={togglePlanSecret}
+                        className={`rounded-full border border-[var(--color-navy)]/18 bg-[var(--color-navy)]/8 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] ${primaryInteractiveClassName}`}
+                      >
+                        Voltar
+                      </button>
+                    </div>
+
+                    <div className="grid gap-8 lg:grid-cols-[0.9fr_1fr] lg:items-end">
+                      <div>
+                        <p className="text-xl leading-9 text-[var(--color-navy)]/78">{selectedPlan.secretCopy}</p>
+                        <p className="mt-8 rounded-[1.4rem] bg-white/40 p-5 text-base leading-7 text-[var(--color-navy)]/82">
+                          {selectedPlan.idealFor}
+                        </p>
+                      </div>
+                      <div className="space-y-3">
+                        {selectedPlan.secretBullets.map((item) => (
+                          <div key={item} className="flex items-start gap-3 border-t border-[var(--color-navy)]/18 pt-4">
+                            <Anchor aria-hidden="true" className="mt-1 h-4 w-4 shrink-0" />
+                            <span className="text-lg leading-7">{item}</span>
+                          </div>
+                        ))}
+                        <a
+                          href={buildWhatsappHref(people, date, selectedPlan.id)}
+                          target="_blank"
+                          rel="noreferrer"
+                          onClick={() =>
+                            trackEvent("whatsapp_click", {
+                              cta_location: "pricing_secret",
+                              plan: selectedPlan.id,
+                              plan_label: selectedPlan.label,
+                              plan_price: selectedPlan.price,
+                              guests: people,
+                              preferred_date: date || "a_definir",
+                            })
+                          }
+                          className={`mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-[var(--color-navy)] px-6 py-4 text-sm font-semibold text-white hover:bg-[var(--color-navy)]/88 ${primaryInteractiveClassName}`}
+                        >
+                          Quero esse plano
+                          <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+
+            <motion.aside {...fadeUp(0.08)} className="flex flex-col justify-between gap-4">
+              <div className="rounded-[1.6rem] border border-white/10 bg-white/6 p-3">
+                {plans.map((plan) => {
+                  const active = plan.id === selectedPlan.id;
+
+                  return (
+                    <button
+                      key={plan.id}
+                      type="button"
+                      onClick={() => selectPlan(plan.id)}
+                      className={`block w-full rounded-[1.2rem] p-4 text-left transition ${
+                        active ? "bg-white text-[var(--color-navy)]" : "text-white/72 hover:bg-white/8 hover:text-white"
+                      } ${primaryInteractiveClassName}`}
+                    >
+                      <span className="block text-xs uppercase tracking-[0.24em] text-[var(--color-sand)]">
+                        {plan.label}
+                      </span>
+                      <span className="mt-2 block font-display text-3xl leading-none">{plan.price}</span>
+                      <span className={`mt-2 block text-sm ${active ? "text-[var(--color-navy)]/68" : "text-white/56"}`}>
+                        {plan.duration} · {plan.capacity}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="rounded-[1.6rem] border border-white/10 bg-white/6 p-5 text-white">
+                <p className="text-sm uppercase tracking-[0.22em] text-[var(--color-sand)]">Comparativo rapido</p>
+                <div className="mt-5 space-y-4 text-sm text-white/72">
+                  <p>Essencial: melhor entrada para vender experiencia privativa sem pesar na decisao.</p>
+                  <p>Premium: melhor escolha para data especial, roteiro longo e efeito memoravel.</p>
+                </div>
+                <div className="mt-6 flex gap-3">
+                  <button
+                    type="button"
+                    onClick={() => movePlan(-1)}
+                    className={`inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/16 text-white hover:bg-white/10 ${primaryInteractiveClassName}`}
+                    aria-label="Plano anterior"
                   >
-                    Reservar este plano
-                    <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
-                  </a>
-                </motion.article>
-              );
-            })}
+                    <ChevronLeft aria-hidden="true" className="h-5 w-5" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => movePlan(1)}
+                    className={`inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/16 text-white hover:bg-white/10 ${primaryInteractiveClassName}`}
+                    aria-label="Proximo plano"
+                  >
+                    <ChevronRight aria-hidden="true" className="h-5 w-5" />
+                  </button>
+                </div>
+              </div>
+            </motion.aside>
           </div>
         </div>
       </section>

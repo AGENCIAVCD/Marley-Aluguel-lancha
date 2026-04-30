@@ -830,12 +830,12 @@ export default function Home() {
               </motion.div>
             </motion.div>
 
-            <motion.aside {...fadeUp(0.08)} className="flex flex-col justify-between gap-4">
+            <motion.aside {...fadeUp(0.08)} className="order-first flex flex-col justify-between gap-4 lg:order-none">
               <div className="relative rounded-[1.8rem] border border-white/14 bg-white/6 p-3 shadow-[0_24px_70px_rgba(0,0,0,0.16)]">
                 <button
                   type="button"
                   onClick={() => movePlan(-1)}
-                  className={`absolute -left-4 top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-[var(--color-sand)] text-[var(--color-navy)] shadow-[0_18px_45px_rgba(0,0,0,0.25)] hover:bg-[var(--color-aqua)] ${primaryInteractiveClassName}`}
+                  className={`absolute -left-4 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-[var(--color-sand)] text-[var(--color-navy)] shadow-[0_18px_45px_rgba(0,0,0,0.25)] hover:bg-[var(--color-aqua)] lg:inline-flex ${primaryInteractiveClassName}`}
                   aria-label="Plano anterior"
                 >
                   <ChevronLeft aria-hidden="true" className="h-5 w-5" />
@@ -843,41 +843,61 @@ export default function Home() {
                 <button
                   type="button"
                   onClick={() => movePlan(1)}
-                  className={`absolute -right-4 top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-[var(--color-sand)] text-[var(--color-navy)] shadow-[0_18px_45px_rgba(0,0,0,0.25)] hover:bg-[var(--color-aqua)] ${primaryInteractiveClassName}`}
+                  className={`absolute -right-4 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-[var(--color-sand)] text-[var(--color-navy)] shadow-[0_18px_45px_rgba(0,0,0,0.25)] hover:bg-[var(--color-aqua)] lg:inline-flex ${primaryInteractiveClassName}`}
                   aria-label="Próximo plano"
                 >
                   <ChevronRight aria-hidden="true" className="h-5 w-5" />
                 </button>
 
                 <div className="mb-3 flex items-center justify-between gap-3 px-2 pt-1">
-                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/68">Planos disponíveis</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/68">Escolha o plano</p>
                   <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/78">
                     {activePlanIndex + 1}/{plans.length}
                   </span>
+                  <div className="flex gap-2 lg:hidden">
+                    <button
+                      type="button"
+                      onClick={() => movePlan(-1)}
+                      className={`inline-flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-sand)] text-[var(--color-navy)] ${primaryInteractiveClassName}`}
+                      aria-label="Plano anterior"
+                    >
+                      <ChevronLeft aria-hidden="true" className="h-4 w-4" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => movePlan(1)}
+                      className={`inline-flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-sand)] text-[var(--color-navy)] ${primaryInteractiveClassName}`}
+                      aria-label="Próximo plano"
+                    >
+                      <ChevronRight aria-hidden="true" className="h-4 w-4" />
+                    </button>
+                  </div>
                 </div>
 
-                {plans.map((plan) => {
-                  const active = plan.id === selectedPlan.id;
+                <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] lg:block lg:space-y-0 lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden">
+                  {plans.map((plan) => {
+                    const active = plan.id === selectedPlan.id;
 
-                  return (
-                    <button
-                      key={plan.id}
-                      type="button"
-                      onClick={() => selectPlan(plan.id)}
-                      className={`block w-full rounded-[1.2rem] p-4 text-left transition ${
-                        active ? "bg-white text-[var(--color-navy)]" : "text-white/72 hover:bg-white/8 hover:text-white"
-                      } ${primaryInteractiveClassName}`}
-                    >
-                      <span className={`block text-xs font-semibold uppercase tracking-[0.24em] ${active ? "text-[var(--color-navy)]/66" : "text-[var(--color-sand)]"}`}>
-                        {plan.label}
-                      </span>
-                      <span className="mt-2 block font-display text-3xl leading-none">{plan.price}</span>
-                      <span className={`mt-2 block text-sm ${active ? "text-[var(--color-navy)]/68" : "text-white/56"}`}>
-                        {plan.duration} · {plan.capacity}
-                      </span>
-                    </button>
-                  );
-                })}
+                    return (
+                      <button
+                        key={plan.id}
+                        type="button"
+                        onClick={() => selectPlan(plan.id)}
+                        className={`block min-w-[9.5rem] rounded-[1.1rem] p-3 text-left transition lg:w-full lg:min-w-0 lg:rounded-[1.2rem] lg:p-4 ${
+                          active ? "bg-white text-[var(--color-navy)]" : "bg-white/5 text-white/72 hover:bg-white/8 hover:text-white"
+                        } ${primaryInteractiveClassName}`}
+                      >
+                        <span className={`block text-[0.64rem] font-semibold uppercase tracking-[0.2em] lg:text-xs lg:tracking-[0.24em] ${active ? "text-[var(--color-navy)]/66" : "text-[var(--color-sand)]"}`}>
+                          {plan.label}
+                        </span>
+                        <span className="mt-2 block font-display text-2xl leading-none lg:text-3xl">{plan.price}</span>
+                        <span className={`mt-2 block text-xs lg:text-sm ${active ? "text-[var(--color-navy)]/68" : "text-white/56"}`}>
+                          {plan.duration}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
 
                 <div className="mt-4 flex items-center justify-center gap-2 px-2 pb-1">
                   {plans.map((plan) => (
@@ -894,7 +914,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="rounded-[1.6rem] border border-white/10 bg-white/6 p-5 text-white">
+              <div className="hidden rounded-[1.6rem] border border-white/10 bg-white/6 p-5 text-white lg:block">
                 <p className="text-sm uppercase tracking-[0.22em] text-[var(--color-sand)]">Comparativo rápido</p>
                 <div className="mt-5 space-y-4 text-sm text-white/72">
                   <p>Três ilhas: promocional de entrada para vender uma experiência privativa e objetiva.</p>

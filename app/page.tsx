@@ -249,6 +249,7 @@ export default function Home() {
   const [revealedPlan, setRevealedPlan] = useState<string | null>(null);
   const [activeExperience, setActiveExperience] = useState(0);
   const [isExperienceSectionVisible, setIsExperienceSectionVisible] = useState(false);
+  const [isExperienceInteracting, setIsExperienceInteracting] = useState(false);
   const [people, setPeople] = useState("1");
   const [date, setDate] = useState("");
   const experienceSectionRef = useRef<HTMLElement | null>(null);
@@ -301,6 +302,10 @@ export default function Home() {
     selectExperience(activeExperience + direction);
   }
 
+  function releaseExperienceInteraction() {
+    window.setTimeout(() => setIsExperienceInteracting(false), 260);
+  }
+
   useEffect(() => {
     const section = experienceSectionRef.current;
 
@@ -321,7 +326,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (shouldReduceMotion || !isExperienceSectionVisible) {
+    if (shouldReduceMotion || !isExperienceSectionVisible || isExperienceInteracting) {
       return;
     }
 
@@ -341,7 +346,7 @@ export default function Home() {
     }, experienceRotationIntervalMs);
 
     return () => window.clearInterval(timer);
-  }, [activeExperience, isExperienceSectionVisible, shouldReduceMotion]);
+  }, [activeExperience, isExperienceInteracting, isExperienceSectionVisible, shouldReduceMotion]);
 
   function togglePlanSecret() {
     const nextValue = isPlanRevealed ? null : selectedPlan.id;
@@ -656,6 +661,10 @@ export default function Home() {
 
           <div
             ref={experienceTrackRef}
+            onPointerDown={() => setIsExperienceInteracting(true)}
+            onPointerUp={releaseExperienceInteraction}
+            onPointerCancel={releaseExperienceInteraction}
+            onMouseLeave={releaseExperienceInteraction}
             onScroll={(event) => {
               const container = event.currentTarget;
               const center = container.scrollLeft + container.clientWidth / 2;
@@ -671,9 +680,9 @@ export default function Home() {
                 0,
               );
 
-              setActiveExperience(nextIndex);
+              setActiveExperience((currentIndex) => (currentIndex === nextIndex ? currentIndex : nextIndex));
             }}
-            className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-1 py-3 [scrollbar-width:none] sm:gap-6 [&::-webkit-scrollbar]:hidden"
+            className="flex snap-x snap-proximity gap-4 overflow-x-auto overscroll-x-contain px-1 py-3 [scrollbar-width:none] [touch-action:pan-x] sm:gap-6 [&::-webkit-scrollbar]:hidden"
           >
             {experienceCards.map((card, index) => (
               <motion.article
@@ -682,7 +691,7 @@ export default function Home() {
                 }}
                 key={card.title}
                 {...fadeUp(index * 0.08)}
-                className="group relative min-h-[28rem] min-w-[min(82vw,24rem)] snap-center overflow-hidden rounded-[2.4rem] bg-[var(--color-navy)] shadow-[0_26px_70px_rgba(10,25,47,0.18)] ring-1 ring-white/70 sm:min-w-[24rem] lg:min-w-[26rem]"
+                className="group relative min-h-[25rem] min-w-[min(64vw,19rem)] snap-start overflow-hidden rounded-[2rem] bg-[var(--color-navy)] shadow-[0_26px_70px_rgba(10,25,47,0.18)] ring-1 ring-white/70 sm:min-h-[28rem] sm:min-w-[24rem] sm:rounded-[2.4rem] lg:min-w-[26rem]"
               >
                 <motion.div
                   whileHover={shouldReduceMotion ? undefined : { scale: 1.05 }}
@@ -693,16 +702,16 @@ export default function Home() {
                     src={card.image}
                     alt={card.imageAlt}
                     fill
-                    sizes="(max-width: 640px) 82vw, (max-width: 1024px) 50vw, 26rem"
+                    sizes="(max-width: 640px) 64vw, (max-width: 1024px) 50vw, 26rem"
                     className="object-cover"
                   />
                 </motion.div>
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,25,47,0.02)_18%,rgba(10,25,47,0.9)_100%)]" />
-                <div className="relative flex h-full flex-col justify-end p-6">
+                <div className="relative flex h-full flex-col justify-end p-5 sm:p-6">
                   <p className="font-sans text-[0.68rem] uppercase tracking-[0.35em] text-[var(--color-sand)]">
                     0{index + 1}
                   </p>
-                  <h3 className="mt-3 text-balance font-display text-3xl text-white">{card.title}</h3>
+                  <h3 className="mt-3 text-balance font-display text-[1.7rem] leading-none text-white sm:text-3xl">{card.title}</h3>
                   <p className="mt-3 max-w-sm text-sm leading-6 text-white/74">{card.copy}</p>
                 </div>
               </motion.article>

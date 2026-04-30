@@ -453,9 +453,9 @@ export default function Home() {
                 </motion.p>
                 <motion.h1
                   {...fadeUp(0.08)}
-                  className="max-w-[12ch] text-balance font-display text-[2.72rem] leading-[0.98] tracking-[-0.025em] text-white sm:text-[3.84rem] sm:leading-[0.94] lg:text-[4.64rem] lg:leading-[0.92]"
+                  className="max-w-[13ch] text-balance font-display text-[2.52rem] leading-[1] tracking-[-0.025em] text-white sm:text-[3.72rem] sm:leading-[0.96] lg:text-[4.46rem] lg:leading-[0.94]"
                 >
-                  A liberdade de navegar pelo lado exclusivo de São Sebastião.
+                  Aluguel de lancha para navegar pelo lado exclusivo de São Sebastião.
                 </motion.h1>
                 <motion.p
                   {...fadeUp(0.16)}

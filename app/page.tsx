@@ -406,13 +406,13 @@ export default function Home() {
           >
             <div className="flex w-full items-center justify-between gap-4 rounded-full border border-white/16 bg-[rgba(255,255,255,0.09)] px-3 py-2.5 backdrop-blur-xl sm:px-4">
               <div className="flex min-w-0 items-center gap-3">
-                <span className="relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white/92 p-1 shadow-[0_10px_30px_rgba(0,0,0,0.18)] ring-1 ring-white/30">
+                <span className="relative flex h-12 w-[5.8rem] shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-[var(--color-navy)] shadow-[0_10px_30px_rgba(0,0,0,0.18)] ring-1 ring-white/18 sm:w-[6.6rem]">
                   <Image
-                    src="/images/logo-marley.png"
+                    src="/images/logo-marley-oficial.jpeg"
                     alt="Logo da Marley Experiências no Mar, aluguel de lancha em São Sebastião"
-                    width={56}
-                    height={56}
-                    className="h-full w-full rounded-full object-contain"
+                    width={128}
+                    height={85}
+                    className="h-full w-full object-cover"
                   />
                 </span>
                 <div className="min-w-0">
@@ -1155,11 +1155,11 @@ export default function Home() {
               <div className="relative">
                 <div className="absolute inset-0 scale-110 rounded-[1.8rem] bg-[rgba(10,25,47,0.08)] blur-2xl" />
                 <Image
-                  src="/images/logo-marley.png"
+                  src="/images/logo-marley-oficial.jpeg"
                   alt="Logo da Marley Experiências no Mar"
                   width={220}
-                  height={164}
-                  className="relative h-auto w-full max-w-[15rem] rounded-[1.25rem] object-contain shadow-[0_18px_45px_rgba(10,25,47,0.18)] ring-1 ring-[rgba(10,25,47,0.08)]"
+                  height={147}
+                  className="relative h-auto w-full max-w-[15rem] rounded-[1.25rem] object-cover shadow-[0_18px_45px_rgba(10,25,47,0.18)] ring-1 ring-[rgba(10,25,47,0.08)]"
                 />
               </div>
               <p className="mt-6 font-display text-4xl">Marley</p>

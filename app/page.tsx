@@ -17,7 +17,7 @@ import {
   Users,
   Waves,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 declare global {
   interface Window {
@@ -229,6 +229,22 @@ export default function Home() {
     const nextIndex = (activePlanIndex + direction + plans.length) % plans.length;
     selectPlan(plans[nextIndex].id);
   }
+
+  useEffect(() => {
+    if (shouldReduceMotion || isPlanRevealed) {
+      return;
+    }
+
+    const timer = window.setInterval(() => {
+      const currentIndex = plans.findIndex((plan) => plan.id === activeItinerary);
+      const nextIndex = (currentIndex + 1 + plans.length) % plans.length;
+
+      setActiveItinerary(plans[nextIndex].id);
+      setRevealedPlan(null);
+    }, 4200);
+
+    return () => window.clearInterval(timer);
+  }, [activeItinerary, isPlanRevealed, shouldReduceMotion]);
 
   function togglePlanSecret() {
     const nextValue = isPlanRevealed ? null : selectedPlan.id;
@@ -716,7 +732,31 @@ export default function Home() {
             </motion.div>
 
             <motion.aside {...fadeUp(0.08)} className="flex flex-col justify-between gap-4">
-              <div className="rounded-[1.6rem] border border-white/10 bg-white/6 p-3">
+              <div className="relative rounded-[1.8rem] border border-white/14 bg-white/6 p-3 shadow-[0_24px_70px_rgba(0,0,0,0.16)]">
+                <button
+                  type="button"
+                  onClick={() => movePlan(-1)}
+                  className={`absolute -left-4 top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-[var(--color-sand)] text-[var(--color-navy)] shadow-[0_18px_45px_rgba(0,0,0,0.25)] hover:bg-[var(--color-aqua)] ${primaryInteractiveClassName}`}
+                  aria-label="Plano anterior"
+                >
+                  <ChevronLeft aria-hidden="true" className="h-5 w-5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => movePlan(1)}
+                  className={`absolute -right-4 top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-[var(--color-sand)] text-[var(--color-navy)] shadow-[0_18px_45px_rgba(0,0,0,0.25)] hover:bg-[var(--color-aqua)] ${primaryInteractiveClassName}`}
+                  aria-label="Próximo plano"
+                >
+                  <ChevronRight aria-hidden="true" className="h-5 w-5" />
+                </button>
+
+                <div className="mb-3 flex items-center justify-between gap-3 px-2 pt-1">
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/68">Planos disponíveis</p>
+                  <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/78">
+                    {activePlanIndex + 1}/{plans.length}
+                  </span>
+                </div>
+
                 {plans.map((plan) => {
                   const active = plan.id === selectedPlan.id;
 
@@ -739,6 +779,20 @@ export default function Home() {
                     </button>
                   );
                 })}
+
+                <div className="mt-4 flex items-center justify-center gap-2 px-2 pb-1">
+                  {plans.map((plan) => (
+                    <button
+                      key={plan.id}
+                      type="button"
+                      onClick={() => selectPlan(plan.id)}
+                      className={`h-2 rounded-full transition-all ${
+                        plan.id === selectedPlan.id ? "w-8 bg-[var(--color-sand)]" : "w-2 bg-white/24 hover:bg-white/50"
+                      } ${primaryInteractiveClassName}`}
+                      aria-label={`Selecionar ${plan.title}`}
+                    />
+                  ))}
+                </div>
               </div>
 
               <div className="rounded-[1.6rem] border border-white/10 bg-white/6 p-5 text-white">

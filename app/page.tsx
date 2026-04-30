@@ -178,7 +178,6 @@ const highlights = [
 
 const primaryInteractiveClassName =
   "outline-none transition focus-visible:ring-2 focus-visible:ring-[var(--color-aqua)] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent";
-const planRotationIntervalMs = 5200;
 const experienceRotationIntervalMs = 4200;
 
 function trackEvent(eventName: string, payload: Record<string, unknown>) {
@@ -301,22 +300,6 @@ export default function Home() {
   function moveExperience(direction: 1 | -1) {
     selectExperience(activeExperience + direction);
   }
-
-  useEffect(() => {
-    if (shouldReduceMotion || isPlanRevealed) {
-      return;
-    }
-
-    const timer = window.setInterval(() => {
-      const currentIndex = plans.findIndex((plan) => plan.id === activeItinerary);
-      const nextIndex = (currentIndex + 1 + plans.length) % plans.length;
-
-      setActiveItinerary(plans[nextIndex].id);
-      setRevealedPlan(null);
-    }, planRotationIntervalMs);
-
-    return () => window.clearInterval(timer);
-  }, [activeItinerary, isPlanRevealed, shouldReduceMotion]);
 
   useEffect(() => {
     const section = experienceSectionRef.current;

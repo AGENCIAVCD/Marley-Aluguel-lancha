@@ -786,8 +786,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-18 sm:px-8 lg:px-12 lg:py-24">
-        <div className="grid gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-center">
+      <section className="bg-[linear-gradient(180deg,#edf4f7_0%,#f8fafc_100%)] px-5 py-18 sm:px-8 lg:px-12 lg:py-24">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-center">
           <motion.div {...fadeUp()} className="max-w-2xl">
             <p className="font-sans text-[0.72rem] uppercase tracking-[0.4em] text-[var(--color-sand)]">
               Prova social e autoridade
@@ -803,20 +803,20 @@ export default function Home() {
 
           <motion.div
             {...fadeUp(0.08)}
-            className="relative overflow-hidden rounded-[2.2rem] border border-[rgba(10,25,47,0.08)] bg-white p-8 shadow-[0_30px_80px_rgba(10,25,47,0.08)]"
+            className="relative overflow-hidden rounded-[2.2rem] border border-[rgba(10,25,47,0.16)] bg-white p-8 shadow-[0_34px_90px_rgba(10,25,47,0.18)]"
           >
             <div className="absolute inset-x-12 top-0 h-px bg-[linear-gradient(90deg,transparent,var(--color-sand),transparent)]" />
             <div className="absolute -top-12 right-0 h-28 w-28 rounded-full bg-[radial-gradient(circle,rgba(197,160,89,0.34),transparent_68%)] blur-2xl" />
 
             <div className="mx-auto flex max-w-sm flex-col items-center text-center">
               <div className="relative">
-                <div className="absolute inset-0 scale-125 rounded-full bg-[radial-gradient(circle,rgba(114,213,242,0.26),transparent_60%)] blur-xl" />
+                <div className="absolute inset-0 scale-110 rounded-[1.8rem] bg-[rgba(10,25,47,0.08)] blur-2xl" />
                 <Image
                   src="/images/logo-marley.png"
                   alt="Logo Marley"
                   width={220}
                   height={164}
-                  className="relative h-auto w-full max-w-[13.5rem] object-contain"
+                  className="relative h-auto w-full max-w-[15rem] rounded-[1.25rem] object-contain shadow-[0_18px_45px_rgba(10,25,47,0.18)] ring-1 ring-[rgba(10,25,47,0.08)]"
                 />
               </div>
               <p className="mt-6 font-display text-4xl">Marley</p>
@@ -824,11 +824,11 @@ export default function Home() {
                 Experiências no mar
               </p>
               <div className="mt-8 grid w-full gap-3 text-left">
-                <div className="flex items-center gap-3 rounded-2xl bg-[var(--color-seafoam)] px-4 py-3">
+                <div className="flex items-center gap-3 rounded-2xl border border-[rgba(10,25,47,0.08)] bg-[#eef4f7] px-4 py-3 shadow-[0_12px_28px_rgba(10,25,47,0.06)]">
                   <MapPinned aria-hidden="true" className="h-4 w-4 shrink-0 text-[var(--color-sand)]" />
                   <span>Saida de Boicucanga</span>
                 </div>
-                <div className="flex items-center gap-3 rounded-2xl bg-[var(--color-seafoam)] px-4 py-3">
+                <div className="flex items-center gap-3 rounded-2xl border border-[rgba(10,25,47,0.08)] bg-[#eef4f7] px-4 py-3 shadow-[0_12px_28px_rgba(10,25,47,0.06)]">
                   <ShipWheel aria-hidden="true" className="h-4 w-4 shrink-0 text-[var(--color-sand)]" />
                   <span>Passeios privativos com até 6 passageiros</span>
                 </div>

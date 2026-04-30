@@ -201,12 +201,37 @@ function fadeUp(delay = 0) {
   };
 }
 
-function buildWhatsappHref(people: string, date: string, itinerary: string) {
-  void people;
-  void date;
-  void itinerary;
+function formatPreferredDate(date: string) {
+  if (!date) {
+    return "a definir";
+  }
 
-  return `https://wa.me/${whatsappNumber}`;
+  const [year, month, day] = date.split("-");
+
+  if (!year || !month || !day) {
+    return date;
+  }
+
+  return `${day}/${month}/${year}`;
+}
+
+function buildWhatsappHref(people: string, date: string, itinerary: string) {
+  const plan = plans.find((item) => item.id === itinerary) ?? plans[0];
+  const guestsLabel = `${people} ${people === "1" ? "pessoa" : "pessoas"}`;
+  const message = [
+    "Olá, Marley! Quero reservar um passeio de lancha.",
+    "",
+    `Plano de interesse: ${plan.title}`,
+    `Data desejada: ${formatPreferredDate(date)}`,
+    `Quantidade de pessoas: ${guestsLabel}`,
+    `Duração: ${plan.duration}`,
+    `Investimento: ${plan.price}`,
+    `Saída: ${plan.embark}`,
+    "",
+    "Podem me confirmar a disponibilidade e os próximos passos?",
+  ].join("\n");
+
+  return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
 
 const clientFacts = ["São Sebastião", "Saída de Boiçucanga", "Até 6 passageiros"];

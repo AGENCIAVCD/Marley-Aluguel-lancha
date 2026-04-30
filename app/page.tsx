@@ -623,7 +623,7 @@ export default function Home() {
         className="relative overflow-hidden bg-[var(--color-navy)] py-18 text-white lg:py-24"
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(114,213,242,0.12),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(197,160,89,0.16),transparent_30%)]" />
-        <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-8 lg:px-12">
           <motion.div {...fadeUp()} className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
             <div className="max-w-lg">
               <p className="font-sans text-[0.72rem] uppercase tracking-[0.4em] text-[var(--color-sand)]">
@@ -653,12 +653,12 @@ export default function Home() {
               initial={{ opacity: 0, x: shouldReduceMotion ? 0 : 28 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="relative overflow-hidden rounded-[2.2rem] bg-[var(--color-navy)] text-[var(--color-navy)] shadow-[0_34px_110px_rgba(0,0,0,0.28)]"
+              className="relative overflow-hidden rounded-[1.8rem] bg-[var(--color-navy)] text-[var(--color-navy)] shadow-[0_34px_110px_rgba(0,0,0,0.28)] sm:rounded-[2.2rem]"
             >
               <motion.div
                 animate={{ rotateY: isPlanRevealed ? 180 : 0 }}
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="relative min-h-[42rem] [transform-style:preserve-3d] lg:min-h-[36rem]"
+                className="relative min-h-[50rem] [transform-style:preserve-3d] sm:min-h-[46rem] lg:min-h-[36rem]"
               >
                 <div className="absolute inset-0 overflow-hidden bg-[var(--color-navy)] [backface-visibility:hidden]">
                   <Image
@@ -669,27 +669,27 @@ export default function Home() {
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,25,47,0.94)_0%,rgba(10,25,47,0.78)_44%,rgba(10,25,47,0.24)_100%)]" />
-                  <div className="relative flex min-h-[42rem] flex-col justify-between p-6 text-white sm:p-8 lg:min-h-[36rem] lg:p-10">
+                  <div className="relative flex min-h-[50rem] flex-col justify-between p-5 text-white sm:min-h-[46rem] sm:p-8 lg:min-h-[36rem] lg:p-10">
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <p className="font-sans text-[0.7rem] uppercase tracking-[0.36em] text-[var(--color-sand)]">
                           {selectedPlan.label}
                         </p>
-                        <h3 className="mt-4 max-w-[12ch] font-display text-5xl leading-none sm:text-6xl">
+                        <h3 className="mt-3 max-w-[12ch] font-display text-4xl leading-none sm:mt-4 sm:text-6xl">
                           {selectedPlan.title}
                         </h3>
                       </div>
-                      <div className="rounded-full border border-white/18 bg-white/12 px-4 py-2 text-xs uppercase tracking-[0.22em] text-white/86 backdrop-blur-md">
+                      <div className="rounded-full border border-white/18 bg-white/12 px-3 py-1.5 text-[0.68rem] uppercase tracking-[0.18em] text-white/86 backdrop-blur-md sm:px-4 sm:py-2 sm:text-xs sm:tracking-[0.22em]">
                         {activePlanIndex + 1}/{plans.length}
                       </div>
                     </div>
 
                     <div className="max-w-3xl">
-                      <p className="max-w-md text-lg leading-8 text-white/78">{selectedPlan.tagline}</p>
-                      <div className="mt-8 grid gap-4 md:grid-cols-[0.86fr_1fr] md:items-end">
-                        <div className="rounded-[1.6rem] border border-white/16 bg-white/12 p-5 backdrop-blur-md">
-                          <p className="text-sm uppercase tracking-[0.22em] text-white/62">Investimento</p>
-                          <p className="mt-2 font-display text-6xl leading-none text-[var(--color-sand)]">
+                      <p className="max-w-md text-base leading-7 text-white/78 sm:text-lg sm:leading-8">{selectedPlan.tagline}</p>
+                      <div className="mt-6 grid gap-3 sm:mt-8 md:grid-cols-[0.86fr_1fr] md:items-end">
+                        <div className="rounded-[1.35rem] border border-white/16 bg-white/12 p-4 backdrop-blur-md sm:rounded-[1.6rem] sm:p-5">
+                          <p className="text-xs uppercase tracking-[0.2em] text-white/62 sm:text-sm sm:tracking-[0.22em]">Investimento</p>
+                          <p className="mt-2 font-display text-5xl leading-none text-[var(--color-sand)] sm:text-6xl">
                             {selectedPlan.price}
                           </p>
                           <p className="mt-3 text-sm text-white/64">Passeio privativo para até 6 passageiros.</p>
@@ -700,18 +700,18 @@ export default function Home() {
 
                         <div className="grid gap-3">
                           <div className="grid grid-cols-2 gap-3">
-                            <div className="rounded-[1.2rem] border border-white/12 bg-white/10 p-4">
+                            <div className="rounded-[1.2rem] border border-white/12 bg-white/10 p-3 sm:p-4">
                               <Clock3 aria-hidden="true" className="h-4 w-4 text-[var(--color-sand)]" />
                               <p className="mt-3 text-sm text-white/64">Duração</p>
                               <p className="mt-1 font-semibold">{selectedPlan.duration}</p>
                             </div>
-                            <div className="rounded-[1.2rem] border border-white/12 bg-white/10 p-4">
+                            <div className="rounded-[1.2rem] border border-white/12 bg-white/10 p-3 sm:p-4">
                               <Users aria-hidden="true" className="h-4 w-4 text-[var(--color-sand)]" />
                               <p className="mt-3 text-sm text-white/64">Grupo</p>
                               <p className="mt-1 font-semibold">{selectedPlan.capacity}</p>
                             </div>
                           </div>
-                          <div className="rounded-[1.2rem] border border-white/12 bg-white/10 p-4">
+                          <div className="rounded-[1.2rem] border border-white/12 bg-white/10 p-3 sm:p-4">
                             <MapPinned aria-hidden="true" className="h-4 w-4 text-[var(--color-sand)]" />
                             <p className="mt-3 text-sm text-white/64">Embarque</p>
                             <p className="mt-1 font-semibold">{selectedPlan.embark}</p>
@@ -771,7 +771,7 @@ export default function Home() {
                       className="object-cover"
                     />
                   </div>
-                  <div className="relative flex min-h-[42rem] flex-col justify-between p-6 sm:p-8 lg:min-h-[36rem] lg:p-10">
+                  <div className="relative flex min-h-[50rem] flex-col justify-between p-5 sm:min-h-[46rem] sm:p-8 lg:min-h-[36rem] lg:p-10">
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <p className="font-sans text-[0.7rem] uppercase tracking-[0.34em] text-[var(--color-navy)]/60">

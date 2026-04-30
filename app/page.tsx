@@ -204,13 +204,15 @@ export default function Home() {
           >
             <div className="flex w-full items-center justify-between gap-4 rounded-full border border-white/16 bg-[rgba(255,255,255,0.09)] px-3 py-2.5 backdrop-blur-xl sm:px-4">
               <div className="flex min-w-0 items-center gap-3">
-                <Image
-                  src="/images/sea-view.png"
-                  alt="Logo Marley Experiências no Mar"
-                  width={56}
-                  height={56}
-                  className="h-10 w-10 shrink-0 object-contain sm:h-11 sm:w-11"
-                />
+                <span className="relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white/92 p-1 shadow-[0_10px_30px_rgba(0,0,0,0.18)] ring-1 ring-white/30">
+                  <Image
+                    src="/images/sea-view.png"
+                    alt="Logo Marley Experiências no Mar"
+                    width={56}
+                    height={56}
+                    className="h-full w-full rounded-full object-contain"
+                  />
+                </span>
                 <div className="min-w-0">
                   <p className="font-sans text-[0.6rem] uppercase tracking-[0.34em] text-[var(--color-sand)]">
                     Marley

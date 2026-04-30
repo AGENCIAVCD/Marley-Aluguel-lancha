@@ -241,8 +241,10 @@ export default function Home() {
   const [activeItinerary, setActiveItinerary] = useState(plans[0].id);
   const [revealedPlan, setRevealedPlan] = useState<string | null>(null);
   const [activeExperience, setActiveExperience] = useState(0);
+  const [isExperienceSectionVisible, setIsExperienceSectionVisible] = useState(false);
   const [people, setPeople] = useState("4");
   const [date, setDate] = useState("");
+  const experienceSectionRef = useRef<HTMLElement | null>(null);
   const experienceTrackRef = useRef<HTMLDivElement | null>(null);
   const experienceRefs = useRef<Array<HTMLElement | null>>([]);
   const { scrollYProgress } = useScroll();
@@ -308,7 +310,26 @@ export default function Home() {
   }, [activeItinerary, isPlanRevealed, shouldReduceMotion]);
 
   useEffect(() => {
-    if (shouldReduceMotion) {
+    const section = experienceSectionRef.current;
+
+    if (!section) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsExperienceSectionVisible(entry.isIntersecting);
+      },
+      { threshold: 0.35 },
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (shouldReduceMotion || !isExperienceSectionVisible) {
       return;
     }
 
@@ -328,7 +349,7 @@ export default function Home() {
     }, 3600);
 
     return () => window.clearInterval(timer);
-  }, [activeExperience, shouldReduceMotion]);
+  }, [activeExperience, isExperienceSectionVisible, shouldReduceMotion]);
 
   function togglePlanSecret() {
     const nextValue = isPlanRevealed ? null : selectedPlan.id;
@@ -558,7 +579,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-18 sm:px-8 lg:px-12 lg:py-24">
+      <section ref={experienceSectionRef} className="mx-auto max-w-7xl px-5 py-18 sm:px-8 lg:px-12 lg:py-24">
         <motion.div {...fadeUp()} className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
             <p className="font-sans text-[0.72rem] font-semibold uppercase tracking-[0.4em] text-[var(--color-navy)]/72">

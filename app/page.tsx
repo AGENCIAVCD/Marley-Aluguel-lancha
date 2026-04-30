@@ -465,36 +465,41 @@ export default function Home() {
           </h2>
         </motion.div>
 
-        <div className="mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-2 pr-5 sm:pr-8 lg:pr-12">
-          {experienceCards.map((card, index) => (
-            <motion.article
-              key={card.title}
-              {...fadeUp(index * 0.08)}
-              className="group relative min-h-[28rem] min-w-[18.5rem] snap-start overflow-hidden rounded-[2rem] bg-[var(--color-navy)] sm:min-w-[24rem] lg:min-w-[26rem]"
-            >
-              <motion.div
-                whileHover={shouldReduceMotion ? undefined : { scale: 1.05 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="absolute inset-0"
+        <div className="relative mt-10 overflow-hidden rounded-[2.6rem]">
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-[linear-gradient(90deg,var(--background),transparent)] sm:w-16" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-[linear-gradient(270deg,var(--background),transparent)] sm:w-16" />
+
+          <div className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-1 py-3 [scrollbar-width:none] sm:gap-6 [&::-webkit-scrollbar]:hidden">
+            {experienceCards.map((card, index) => (
+              <motion.article
+                key={card.title}
+                {...fadeUp(index * 0.08)}
+                className="group relative min-h-[28rem] min-w-[min(82vw,24rem)] snap-center overflow-hidden rounded-[2.4rem] bg-[var(--color-navy)] shadow-[0_26px_70px_rgba(10,25,47,0.18)] ring-1 ring-white/70 sm:min-w-[24rem] lg:min-w-[26rem]"
               >
-                <Image
-                  src={card.image}
-                  alt={card.imageAlt}
-                  fill
-                  sizes="(max-width: 640px) 74vw, (max-width: 1024px) 50vw, 26rem"
-                  className="object-cover"
-                />
-              </motion.div>
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,25,47,0.02)_20%,rgba(10,25,47,0.88)_100%)]" />
-              <div className="relative flex h-full flex-col justify-end p-6">
-                <p className="font-sans text-[0.68rem] uppercase tracking-[0.35em] text-[var(--color-sand)]">
-                  0{index + 1}
-                </p>
-                <h3 className="mt-3 text-balance font-display text-3xl text-white">{card.title}</h3>
-                <p className="mt-3 max-w-sm text-sm leading-6 text-white/74">{card.copy}</p>
-              </div>
-            </motion.article>
-          ))}
+                <motion.div
+                  whileHover={shouldReduceMotion ? undefined : { scale: 1.05 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={card.image}
+                    alt={card.imageAlt}
+                    fill
+                    sizes="(max-width: 640px) 82vw, (max-width: 1024px) 50vw, 26rem"
+                    className="object-cover"
+                  />
+                </motion.div>
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,25,47,0.02)_18%,rgba(10,25,47,0.9)_100%)]" />
+                <div className="relative flex h-full flex-col justify-end p-6">
+                  <p className="font-sans text-[0.68rem] uppercase tracking-[0.35em] text-[var(--color-sand)]">
+                    0{index + 1}
+                  </p>
+                  <h3 className="mt-3 text-balance font-display text-3xl text-white">{card.title}</h3>
+                  <p className="mt-3 max-w-sm text-sm leading-6 text-white/74">{card.copy}</p>
+                </div>
+              </motion.article>
+            ))}
+          </div>
         </div>
       </section>
 

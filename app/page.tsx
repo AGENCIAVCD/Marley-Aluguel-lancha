@@ -647,7 +647,7 @@ export default function Home() {
             </div>
           </motion.div>
 
-          <div className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_21rem] lg:items-stretch">
+          <div className="mt-10 grid gap-5 lg:grid-cols-[minmax(0,1fr)_16.5rem] lg:items-start">
             <motion.div
               key={selectedPlan.id}
               initial={{ opacity: 0, x: shouldReduceMotion ? 0 : 28 }}
@@ -658,7 +658,7 @@ export default function Home() {
               <motion.div
                 animate={{ rotateY: isPlanRevealed ? 180 : 0 }}
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="relative min-h-[50rem] [transform-style:preserve-3d] sm:min-h-[46rem] lg:min-h-[36rem]"
+                className="relative min-h-[50rem] [transform-style:preserve-3d] sm:min-h-[46rem] lg:min-h-[34rem]"
               >
                 <div className="absolute inset-0 overflow-hidden bg-[var(--color-navy)] [backface-visibility:hidden]">
                   <Image
@@ -669,7 +669,7 @@ export default function Home() {
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,25,47,0.94)_0%,rgba(10,25,47,0.78)_44%,rgba(10,25,47,0.24)_100%)]" />
-                  <div className="relative flex min-h-[50rem] flex-col justify-between p-5 text-white sm:min-h-[46rem] sm:p-8 lg:min-h-[36rem] lg:p-10">
+                  <div className="relative flex min-h-[50rem] flex-col justify-between p-5 text-white sm:min-h-[46rem] sm:p-8 lg:min-h-[34rem] lg:p-10">
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <p className="font-sans text-[0.7rem] uppercase tracking-[0.36em] text-[var(--color-sand)]">
@@ -771,7 +771,7 @@ export default function Home() {
                       className="object-cover"
                     />
                   </div>
-                  <div className="relative flex min-h-[50rem] flex-col justify-between p-5 sm:min-h-[46rem] sm:p-8 lg:min-h-[36rem] lg:p-10">
+                  <div className="relative flex min-h-[50rem] flex-col justify-between p-5 sm:min-h-[46rem] sm:p-8 lg:min-h-[34rem] lg:p-10">
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <p className="font-sans text-[0.7rem] uppercase tracking-[0.34em] text-[var(--color-navy)]/60">
@@ -830,51 +830,34 @@ export default function Home() {
               </motion.div>
             </motion.div>
 
-            <motion.aside {...fadeUp(0.08)} className="order-first flex flex-col justify-between gap-4 lg:order-none">
-              <div className="relative rounded-[1.8rem] border border-white/14 bg-white/6 p-3 shadow-[0_24px_70px_rgba(0,0,0,0.16)]">
-                <button
-                  type="button"
-                  onClick={() => movePlan(-1)}
-                  className={`absolute -left-4 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-[var(--color-sand)] text-[var(--color-navy)] shadow-[0_18px_45px_rgba(0,0,0,0.25)] hover:bg-[var(--color-aqua)] lg:inline-flex ${primaryInteractiveClassName}`}
-                  aria-label="Plano anterior"
-                >
-                  <ChevronLeft aria-hidden="true" className="h-5 w-5" />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => movePlan(1)}
-                  className={`absolute -right-4 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-[var(--color-sand)] text-[var(--color-navy)] shadow-[0_18px_45px_rgba(0,0,0,0.25)] hover:bg-[var(--color-aqua)] lg:inline-flex ${primaryInteractiveClassName}`}
-                  aria-label="Próximo plano"
-                >
-                  <ChevronRight aria-hidden="true" className="h-5 w-5" />
-                </button>
-
-                <div className="mb-3 flex items-center justify-between gap-3 px-2 pt-1">
-                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/68">Escolha o plano</p>
-                  <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/78">
+            <motion.aside {...fadeUp(0.08)} className="order-first flex flex-col gap-3 lg:order-none">
+              <div className="rounded-[1.4rem] border border-white/12 bg-white/5 p-2.5">
+                <div className="mb-2 flex items-center justify-between gap-2 px-1">
+                  <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-white/62">Planos</p>
+                  <span className="rounded-full bg-white/10 px-2.5 py-1 text-[0.68rem] font-semibold text-white/74">
                     {activePlanIndex + 1}/{plans.length}
                   </span>
-                  <div className="flex gap-2 lg:hidden">
+                  <div className="flex gap-1.5">
                     <button
                       type="button"
                       onClick={() => movePlan(-1)}
-                      className={`inline-flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-sand)] text-[var(--color-navy)] ${primaryInteractiveClassName}`}
+                      className={`inline-flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-white hover:bg-[var(--color-sand)] hover:text-[var(--color-navy)] ${primaryInteractiveClassName}`}
                       aria-label="Plano anterior"
                     >
-                      <ChevronLeft aria-hidden="true" className="h-4 w-4" />
+                      <ChevronLeft aria-hidden="true" className="h-3.5 w-3.5" />
                     </button>
                     <button
                       type="button"
                       onClick={() => movePlan(1)}
-                      className={`inline-flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-sand)] text-[var(--color-navy)] ${primaryInteractiveClassName}`}
+                      className={`inline-flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-white hover:bg-[var(--color-sand)] hover:text-[var(--color-navy)] ${primaryInteractiveClassName}`}
                       aria-label="Próximo plano"
                     >
-                      <ChevronRight aria-hidden="true" className="h-4 w-4" />
+                      <ChevronRight aria-hidden="true" className="h-3.5 w-3.5" />
                     </button>
                   </div>
                 </div>
 
-                <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] lg:block lg:space-y-0 lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden">
+                <div className="flex gap-2 overflow-x-auto [scrollbar-width:none] lg:block lg:space-y-1 lg:overflow-visible [&::-webkit-scrollbar]:hidden">
                   {plans.map((plan) => {
                     const active = plan.id === selectedPlan.id;
 
@@ -883,15 +866,15 @@ export default function Home() {
                         key={plan.id}
                         type="button"
                         onClick={() => selectPlan(plan.id)}
-                        className={`block min-w-[9.5rem] rounded-[1.1rem] p-3 text-left transition lg:w-full lg:min-w-0 lg:rounded-[1.2rem] lg:p-4 ${
+                        className={`block min-w-[8rem] rounded-[1rem] p-2.5 text-left transition lg:w-full lg:min-w-0 ${
                           active ? "bg-white text-[var(--color-navy)]" : "bg-white/5 text-white/72 hover:bg-white/8 hover:text-white"
                         } ${primaryInteractiveClassName}`}
                       >
-                        <span className={`block text-[0.64rem] font-semibold uppercase tracking-[0.2em] lg:text-xs lg:tracking-[0.24em] ${active ? "text-[var(--color-navy)]/66" : "text-[var(--color-sand)]"}`}>
+                        <span className={`block text-[0.6rem] font-semibold uppercase tracking-[0.18em] ${active ? "text-[var(--color-navy)]/66" : "text-[var(--color-sand)]"}`}>
                           {plan.label}
                         </span>
-                        <span className="mt-2 block font-display text-2xl leading-none lg:text-3xl">{plan.price}</span>
-                        <span className={`mt-2 block text-xs lg:text-sm ${active ? "text-[var(--color-navy)]/68" : "text-white/56"}`}>
+                        <span className="mt-1.5 block font-display text-xl leading-none">{plan.price}</span>
+                        <span className={`mt-1 block text-[0.72rem] ${active ? "text-[var(--color-navy)]/68" : "text-white/56"}`}>
                           {plan.duration}
                         </span>
                       </button>
@@ -899,7 +882,7 @@ export default function Home() {
                   })}
                 </div>
 
-                <div className="mt-4 flex items-center justify-center gap-2 px-2 pb-1">
+                <div className="mt-3 flex items-center justify-center gap-1.5">
                   {plans.map((plan) => (
                     <button
                       key={plan.id}
@@ -914,7 +897,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="hidden rounded-[1.6rem] border border-white/10 bg-white/6 p-5 text-white lg:block">
+              <div className="hidden">
                 <p className="text-sm uppercase tracking-[0.22em] text-[var(--color-sand)]">Comparativo rápido</p>
                 <div className="mt-5 space-y-4 text-sm text-white/72">
                   <p>Três ilhas: promocional de entrada para vender uma experiência privativa e objetiva.</p>

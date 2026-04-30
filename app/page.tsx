@@ -745,14 +745,14 @@ export default function Home() {
               initial={{ opacity: 0, x: shouldReduceMotion ? 0 : 28 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="relative overflow-hidden rounded-[1.8rem] bg-[var(--color-navy)] text-[var(--color-navy)] shadow-[0_34px_110px_rgba(0,0,0,0.28)] sm:rounded-[2.2rem]"
+              className="relative rounded-[1.8rem] bg-[var(--color-navy)] text-[var(--color-navy)] shadow-[0_34px_110px_rgba(0,0,0,0.28)] sm:rounded-[2.2rem]"
             >
               <motion.div
                 animate={{ rotateY: isPlanRevealed ? 180 : 0 }}
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="relative min-h-[50rem] [transform-style:preserve-3d] sm:min-h-[46rem] lg:min-h-[38rem]"
+                className="relative [transform-style:preserve-3d]"
               >
-                <div className="absolute inset-0 overflow-hidden bg-[var(--color-navy)] [backface-visibility:hidden]">
+                <div className="relative overflow-hidden rounded-[1.8rem] bg-[var(--color-navy)] [backface-visibility:hidden] sm:rounded-[2.2rem]">
                   <Image
                     src={selectedPlan.image}
                     alt={selectedPlan.imageAlt}
@@ -761,7 +761,7 @@ export default function Home() {
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,25,47,0.94)_0%,rgba(10,25,47,0.78)_44%,rgba(10,25,47,0.24)_100%)]" />
-                  <div className="relative flex min-h-[50rem] flex-col justify-between p-5 text-white sm:min-h-[46rem] sm:p-8 lg:min-h-[38rem] lg:p-10">
+                  <div className="relative flex min-h-[50rem] flex-col justify-between p-5 text-white sm:min-h-[46rem] sm:p-8 lg:min-h-[42rem] lg:p-10">
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <p className="font-sans text-[0.7rem] uppercase tracking-[0.36em] text-[var(--color-sand)]">
@@ -853,7 +853,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="absolute inset-0 overflow-hidden bg-[var(--color-sand)] text-[var(--color-navy)] [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                <div className="absolute inset-0 overflow-hidden rounded-[1.8rem] bg-[var(--color-sand)] text-[var(--color-navy)] [backface-visibility:hidden] [transform:rotateY(180deg)] sm:rounded-[2.2rem]">
                   <div className="absolute inset-0 opacity-[0.18]">
                     <Image
                       src={selectedPlan.image}
@@ -863,7 +863,7 @@ export default function Home() {
                       className="object-cover"
                     />
                   </div>
-                  <div className="relative flex min-h-[50rem] flex-col justify-between p-5 sm:min-h-[46rem] sm:p-8 lg:min-h-[38rem] lg:p-10">
+                  <div className="relative flex min-h-[50rem] flex-col justify-between p-5 sm:min-h-[46rem] sm:p-8 lg:min-h-[42rem] lg:p-10">
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <p className="font-sans text-[0.7rem] uppercase tracking-[0.34em] text-[var(--color-navy)]/60">

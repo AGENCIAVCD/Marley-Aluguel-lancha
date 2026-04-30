@@ -797,7 +797,7 @@ export default function Home() {
           </motion.div>
 
           <motion.div {...fadeUp(0.08)} className="flex flex-col justify-center">
-            <p className="font-sans text-[0.72rem] uppercase tracking-[0.4em] text-[var(--color-sand)]">
+            <p className="font-sans text-[0.72rem] font-semibold uppercase tracking-[0.4em] text-[#8a641e]">
               Embarcação
             </p>
             <h2 className="mt-4 text-balance font-display text-4xl leading-none tracking-[-0.03em] sm:text-5xl">
@@ -809,12 +809,12 @@ export default function Home() {
             </p>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-[1.4rem] bg-[var(--color-seafoam)] px-4 py-4">
-                <p className="text-sm uppercase tracking-[0.2em] text-[var(--color-sand)]">Capacidade</p>
+              <div className="rounded-[1.4rem] bg-[#e8f1f4] px-4 py-4 shadow-[inset_0_0_0_1px_rgba(10,25,47,0.04)]">
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#8a641e]">Capacidade</p>
                 <p className="mt-2 text-lg text-[var(--color-navy)]">Até 6 passageiros</p>
               </div>
-              <div className="rounded-[1.4rem] bg-[var(--color-seafoam)] px-4 py-4">
-                <p className="text-sm uppercase tracking-[0.2em] text-[var(--color-sand)]">Embarque</p>
+              <div className="rounded-[1.4rem] bg-[#e8f1f4] px-4 py-4 shadow-[inset_0_0_0_1px_rgba(10,25,47,0.04)]">
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#8a641e]">Embarque</p>
                 <p className="mt-2 text-lg text-[var(--color-navy)]">Saída de Boiçucanga</p>
               </div>
             </div>

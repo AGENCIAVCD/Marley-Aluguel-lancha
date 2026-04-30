@@ -254,11 +254,15 @@ export default function Home() {
   const [activeExperience, setActiveExperience] = useState(0);
   const [isExperienceSectionVisible, setIsExperienceSectionVisible] = useState(false);
   const [isExperienceInteracting, setIsExperienceInteracting] = useState(false);
+  const [isDesktopViewport, setIsDesktopViewport] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(min-width: 768px)").matches,
+  );
   const [people, setPeople] = useState("1");
   const [date, setDate] = useState("");
   const experienceSectionRef = useRef<HTMLElement | null>(null);
   const experienceTrackRef = useRef<HTMLDivElement | null>(null);
   const experienceRefs = useRef<Array<HTMLElement | null>>([]);
+  const experienceScrollTimeoutRef = useRef<number | null>(null);
   const { scrollYProgress } = useScroll();
   const heroY = useTransform(scrollYProgress, [0, 1], [0, shouldReduceMotion ? 0 : -140]);
 
@@ -306,8 +310,34 @@ export default function Home() {
     selectExperience(activeExperience + direction);
   }
 
+  function syncExperienceIndex(container: HTMLDivElement) {
+    const center = container.scrollLeft + container.clientWidth / 2;
+    const nextIndex = Array.from(container.children).reduce((closestIndex, child, index) => {
+      const element = child as HTMLElement;
+      const childCenter = element.offsetLeft + element.offsetWidth / 2;
+      const closestElement = container.children[closestIndex] as HTMLElement;
+      const closestCenter = closestElement.offsetLeft + closestElement.offsetWidth / 2;
+
+      return Math.abs(childCenter - center) < Math.abs(closestCenter - center) ? index : closestIndex;
+    }, 0);
+
+    setActiveExperience((currentIndex) => (currentIndex === nextIndex ? currentIndex : nextIndex));
+  }
+
+  function holdExperienceInteraction() {
+    if (experienceScrollTimeoutRef.current) {
+      window.clearTimeout(experienceScrollTimeoutRef.current);
+    }
+
+    setIsExperienceInteracting(true);
+  }
+
   function releaseExperienceInteraction() {
-    window.setTimeout(() => setIsExperienceInteracting(false), 260);
+    if (experienceScrollTimeoutRef.current) {
+      window.clearTimeout(experienceScrollTimeoutRef.current);
+    }
+
+    experienceScrollTimeoutRef.current = window.setTimeout(() => setIsExperienceInteracting(false), 420);
   }
 
   useEffect(() => {
@@ -330,7 +360,19 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (shouldReduceMotion || !isExperienceSectionVisible || isExperienceInteracting) {
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+
+    function handleChange(event: MediaQueryListEvent) {
+      setIsDesktopViewport(event.matches);
+    }
+
+    mediaQuery.addEventListener("change", handleChange);
+
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+
+  useEffect(() => {
+    if (shouldReduceMotion || !isDesktopViewport || !isExperienceSectionVisible || isExperienceInteracting) {
       return;
     }
 
@@ -350,7 +392,7 @@ export default function Home() {
     }, experienceRotationIntervalMs);
 
     return () => window.clearInterval(timer);
-  }, [activeExperience, isExperienceInteracting, isExperienceSectionVisible, shouldReduceMotion]);
+  }, [activeExperience, isDesktopViewport, isExperienceInteracting, isExperienceSectionVisible, shouldReduceMotion]);
 
   function togglePlanSecret() {
     const nextValue = isPlanRevealed ? null : selectedPlan.id;
@@ -665,28 +707,22 @@ export default function Home() {
 
           <div
             ref={experienceTrackRef}
-            onPointerDown={() => setIsExperienceInteracting(true)}
+            onPointerDown={holdExperienceInteraction}
             onPointerUp={releaseExperienceInteraction}
             onPointerCancel={releaseExperienceInteraction}
+            onTouchStart={holdExperienceInteraction}
+            onTouchEnd={releaseExperienceInteraction}
             onMouseLeave={releaseExperienceInteraction}
             onScroll={(event) => {
               const container = event.currentTarget;
-              const center = container.scrollLeft + container.clientWidth / 2;
-              const nextIndex = Array.from(container.children).reduce(
-                (closestIndex, child, index) => {
-                  const element = child as HTMLElement;
-                  const childCenter = element.offsetLeft + element.offsetWidth / 2;
-                  const closestElement = container.children[closestIndex] as HTMLElement;
-                  const closestCenter = closestElement.offsetLeft + closestElement.offsetWidth / 2;
 
-                  return Math.abs(childCenter - center) < Math.abs(closestCenter - center) ? index : closestIndex;
-                },
-                0,
-              );
-
-              setActiveExperience((currentIndex) => (currentIndex === nextIndex ? currentIndex : nextIndex));
+              holdExperienceInteraction();
+              experienceScrollTimeoutRef.current = window.setTimeout(() => {
+                syncExperienceIndex(container);
+                setIsExperienceInteracting(false);
+              }, 180);
             }}
-            className="flex snap-x snap-proximity gap-4 overflow-x-auto overscroll-x-contain px-1 py-3 [scrollbar-width:none] [touch-action:pan-x] sm:gap-6 [&::-webkit-scrollbar]:hidden"
+            className="flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain px-1 py-3 [scrollbar-width:none] [touch-action:pan-x] sm:gap-6 [&::-webkit-scrollbar]:hidden"
           >
             {experienceCards.map((card, index) => (
               <motion.article

@@ -32,16 +32,19 @@ const experienceCards = [
     title: "Destinos paradisíacos",
     copy: "Aluguel de lancha para chegar a As Ilhas, Ilha das Couves e enseadas preservadas com tempo para mergulho e contemplação.",
     image: "/pexels/coast-emerald.jpg",
+    imageAlt: "Costa verde de São Sebastião vista do mar em passeio privativo de lancha",
   },
   {
     title: "Conforto a bordo",
     copy: "Ventura 23 pes com embarque privativo e atmosfera criada para relaxar com exclusividade.",
     image: "/pexels/boats-aerial.jpg",
+    imageAlt: "Lanchas navegando no litoral norte durante passeio privativo em São Sebastião",
   },
   {
     title: "Momentos únicos",
     copy: "Pôr do sol no mar, avistamento de baleias e roteiros desenhados para criar memórias raras no litoral norte.",
     image: "/pexels/turquoise-boats.jpg",
+    imageAlt: "Barcos em água cristalina no litoral norte para passeio de lancha",
   },
 ];
 
@@ -65,6 +68,7 @@ const plans = [
       "Esse plano funciona muito bem para quem quer sentir que fez algo especial sem transformar o passeio em uma grande producao.",
     secretBullets: ["Sai bonito nas fotos", "Cabe na agenda do fim de semana", "Entrega experiencia premium com investimento menor"],
     image: "/pexels/boats-aerial.jpg",
+    imageAlt: "Vista aérea de lanchas em roteiro das três ilhas saindo de Boiçucanga",
   },
   {
     id: "montao-do-trigo",
@@ -85,6 +89,7 @@ const plans = [
       "Montao do Trigo tem apelo de descoberta. E o roteiro certo para vender exclusividade sem depender de um passeio muito longo.",
     secretBullets: ["Menos previsivel", "Mais sensacao de roteiro especial", "Boa duracao para aproveitar sem pressa"],
     image: "/pexels/coast-emerald.jpg",
+    imageAlt: "Costa preservada no litoral norte em passeio de lancha para Ilha Montão do Trigo",
   },
   {
     id: "ilhabela",
@@ -105,6 +110,7 @@ const plans = [
       "Aqui o valor nao esta so na distancia. Esta na chance de viver um dia raro, com Ilhabela no roteiro e natureza fazendo parte da surpresa.",
     secretBullets: ["Mais tempo a bordo", "Mais impacto para datas especiais", "Mais chance de uma experiencia realmente incomum"],
     image: "/pexels/hero-sao-sebastiao.jpg",
+    imageAlt: "Mar de São Sebastião no roteiro de lancha para Ilhabela com possibilidade de baleias",
   },
   {
     id: "personalizado",
@@ -125,8 +131,32 @@ const plans = [
       "Esse plano e para transformar uma ideia em passeio. Em vez de encaixar o cliente em uma rota pronta, a Marley desenha a experiencia com ele.",
     secretBullets: ["Mais flexibilidade", "Mais aderencia ao perfil do grupo", "Boa opcao para pedidos especiais"],
     image: "/pexels/turquoise-boats.jpg",
+    imageAlt: "Água cristalina e barcos no litoral norte para passeio personalizado de lancha",
   },
 ];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Marley Experiências no Mar",
+  url: "https://lanchamarley.com.br",
+  image: "https://lanchamarley.com.br/images/ventura-23-pes-lancha-marley-boicucanga.png",
+  description:
+    "Passeios privativos de lancha em São Sebastião com saída de Boiçucanga, roteiros para três ilhas, Ilha Montão do Trigo, Ilhabela e experiências personalizadas.",
+  areaServed: ["São Sebastião", "Boiçucanga", "Ilhabela", "Litoral Norte de São Paulo"],
+  telephone: "+55 11 95677-3322",
+  priceRange: "R$ 1.600 - R$ 4.600",
+  sameAs: ["https://marleyaluguellancha.vercel.app"],
+  makesOffer: plans.map((plan) => ({
+    "@type": "Offer",
+    name: plan.title,
+    description: plan.summary,
+    price: plan.price === "Sob consulta" ? undefined : plan.price.replace("R$ ", "").replace(".", "").replace(",", "."),
+    priceCurrency: plan.price === "Sob consulta" ? undefined : "BRL",
+    availability: "https://schema.org/InStock",
+    areaServed: "São Sebastião",
+  })),
+};
 
 const highlights = [
   "Roteiros privativos com saida de Boicucanga.",
@@ -213,11 +243,17 @@ export default function Home() {
 
   return (
     <main className="overflow-x-hidden bg-[var(--color-seafoam)] text-[var(--color-navy)]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData),
+        }}
+      />
       <section className="relative min-h-[100svh] overflow-hidden bg-[var(--color-navy)] text-white">
         <motion.div style={{ y: heroY }} className="absolute inset-0">
           <Image
             src="/pexels/hero-sao-sebastiao.jpg"
-            alt="Vista do mar em São Sebastião a bordo da Marley"
+            alt="Aluguel de lancha em São Sebastião com vista aérea do litoral norte"
             fill
             priority
             sizes="100vw"
@@ -240,7 +276,7 @@ export default function Home() {
                 <span className="relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white/92 p-1 shadow-[0_10px_30px_rgba(0,0,0,0.18)] ring-1 ring-white/30">
                   <Image
                     src="/images/logo-marley.png"
-                    alt="Logo Marley Experiências no Mar"
+                    alt="Logo da Marley Experiências no Mar, aluguel de lancha em São Sebastião"
                     width={56}
                     height={56}
                     className="h-full w-full rounded-full object-contain"
@@ -443,7 +479,7 @@ export default function Home() {
               >
                 <Image
                   src={card.image}
-                  alt={card.title}
+                  alt={card.imageAlt}
                   fill
                   sizes="(max-width: 640px) 74vw, (max-width: 1024px) 50vw, 26rem"
                   className="object-cover"
@@ -507,7 +543,7 @@ export default function Home() {
                 <div className="absolute inset-0 overflow-hidden bg-[var(--color-navy)] [backface-visibility:hidden]">
                   <Image
                     src={selectedPlan.image}
-                    alt={selectedPlan.title}
+                    alt={selectedPlan.imageAlt}
                     fill
                     sizes="(max-width: 1024px) 100vw, 64vw"
                     className="object-cover"
@@ -744,11 +780,11 @@ export default function Home() {
               className="absolute inset-0"
             >
               <Image
-                src="/pexels/turquoise-boats.jpg"
-                alt="Ventura 23 pés da Marley no mar"
+                src="/images/ventura-23-pes-lancha-marley-boicucanga.png"
+                alt="Lancha Ventura 23 pés da Marley em água cristalina para passeio privativo em São Sebastião"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
+                className="object-cover object-center"
               />
             </motion.div>
             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,25,47,0.1)_5%,rgba(10,25,47,0.72)_100%)]" />
@@ -812,8 +848,8 @@ export default function Home() {
               <div className="relative">
                 <div className="absolute inset-0 scale-110 rounded-[1.8rem] bg-[rgba(10,25,47,0.08)] blur-2xl" />
                 <Image
-                  src="/images/logo-marley.png"
-                  alt="Logo Marley"
+                src="/images/logo-marley.png"
+                  alt="Logo da Marley Experiências no Mar"
                   width={220}
                   height={164}
                   className="relative h-auto w-full max-w-[15rem] rounded-[1.25rem] object-contain shadow-[0_18px_45px_rgba(10,25,47,0.18)] ring-1 ring-[rgba(10,25,47,0.08)]"

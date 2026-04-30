@@ -46,6 +46,18 @@ const experienceCards = [
     image: "/pexels/turquoise-boats.jpg",
     imageAlt: "Barcos em água cristalina no litoral norte para passeio de lancha",
   },
+  {
+    title: "Roteiros privativos",
+    copy: "Passeios com saída de Boiçucanga, paradas escolhidas com cuidado e ritmo pensado para o seu grupo.",
+    image: "/pexels/hero-sao-sebastiao.jpg",
+    imageAlt: "Ilha e mar azul em São Sebastião durante roteiro privativo de lancha",
+  },
+  {
+    title: "Ventura 23 pés",
+    copy: "Lancha para até 6 passageiros, ideal para navegar com conforto em passeios curtos ou personalizados.",
+    image: "/images/ventura-23-pes-lancha-marley-boicucanga.png",
+    imageAlt: "Lancha Ventura 23 pés da Marley em água cristalina no litoral norte",
+  },
 ];
 
 const plans = [
@@ -262,6 +274,25 @@ export default function Home() {
 
     return () => window.clearInterval(timer);
   }, [activeItinerary, isPlanRevealed, shouldReduceMotion]);
+
+  useEffect(() => {
+    if (shouldReduceMotion) {
+      return;
+    }
+
+    const timer = window.setInterval(() => {
+      const nextIndex = (activeExperience + 1 + experienceCards.length) % experienceCards.length;
+
+      setActiveExperience(nextIndex);
+      experienceRefs.current[nextIndex]?.scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest",
+      });
+    }, 3600);
+
+    return () => window.clearInterval(timer);
+  }, [activeExperience, shouldReduceMotion]);
 
   function togglePlanSecret() {
     const nextValue = isPlanRevealed ? null : selectedPlan.id;

@@ -980,20 +980,20 @@ export default function Home() {
             preferred_date: date || "a_definir",
           })
         }
-        className={`fixed bottom-[max(1rem,env(safe-area-inset-bottom))] left-4 right-4 z-50 flex items-center gap-3 rounded-[1.75rem] bg-[var(--color-sand)] px-4 py-3 text-sm font-semibold text-[var(--color-navy)] shadow-[0_24px_60px_rgba(10,25,47,0.24)] hover:bg-[var(--color-aqua)] lg:bottom-8 lg:left-8 lg:right-auto lg:w-auto lg:min-w-[18rem] lg:justify-between lg:rounded-full lg:px-5 lg:py-4 ${primaryInteractiveClassName}`}
+        className={`fixed bottom-[max(0.85rem,env(safe-area-inset-bottom))] left-1/2 z-50 flex w-[calc(100%-2rem)] max-w-[20.5rem] -translate-x-1/2 items-center gap-2.5 rounded-full bg-[var(--color-sand)] px-3 py-2 text-xs font-semibold text-[var(--color-navy)] shadow-[0_20px_50px_rgba(10,25,47,0.22)] hover:bg-[var(--color-aqua)] lg:bottom-8 lg:left-8 lg:w-auto lg:min-w-[18rem] lg:max-w-none lg:translate-x-0 lg:justify-between lg:px-5 lg:py-4 lg:text-sm ${primaryInteractiveClassName}`}
       >
         <span className="flex min-w-0 items-center gap-3">
-          <span className="relative inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white text-[var(--color-navy)]">
-            <MessageCircle aria-hidden="true" className="h-5 w-5" />
+          <span className="relative inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-[var(--color-navy)] lg:h-11 lg:w-11">
+            <MessageCircle aria-hidden="true" className="h-4 w-4 lg:h-5 lg:w-5" />
             <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-[var(--color-navy)] px-1 text-[10px] text-white">
               1
             </span>
           </span>
           <span className="min-w-0">
-            <span className="block text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--color-navy)]/72 lg:text-xs lg:tracking-[0.22em]">
+            <span className="hidden text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--color-navy)]/72 sm:block lg:text-xs lg:tracking-[0.22em]">
               Reserva via WhatsApp
             </span>
-            <span className="block text-pretty leading-5">Reservar passeio de lancha em São Sebastião</span>
+            <span className="block truncate leading-5">Reservar passeio pelo WhatsApp</span>
           </span>
         </span>
         <ArrowUpRight aria-hidden="true" className="hidden h-4 w-4 shrink-0 lg:block" />

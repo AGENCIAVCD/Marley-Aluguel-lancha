@@ -457,7 +457,7 @@ export default function Home() {
 
       <section className="mx-auto max-w-7xl px-5 py-18 sm:px-8 lg:px-12 lg:py-24">
         <motion.div {...fadeUp()} className="max-w-2xl">
-          <p className="font-sans text-[0.72rem] uppercase tracking-[0.4em] text-[var(--color-sand)]">
+          <p className="font-sans text-[0.72rem] font-semibold uppercase tracking-[0.4em] text-[var(--color-navy)]/72">
             Experiência no mar
           </p>
           <h2 className="mt-4 text-balance font-display text-4xl leading-none tracking-[-0.03em] sm:text-5xl">
@@ -729,7 +729,7 @@ export default function Home() {
                         active ? "bg-white text-[var(--color-navy)]" : "text-white/72 hover:bg-white/8 hover:text-white"
                       } ${primaryInteractiveClassName}`}
                     >
-                      <span className="block text-xs uppercase tracking-[0.24em] text-[var(--color-sand)]">
+                      <span className={`block text-xs font-semibold uppercase tracking-[0.24em] ${active ? "text-[var(--color-navy)]/66" : "text-[var(--color-sand)]"}`}>
                         {plan.label}
                       </span>
                       <span className="mt-2 block font-display text-3xl leading-none">{plan.price}</span>
@@ -802,7 +802,7 @@ export default function Home() {
           </motion.div>
 
           <motion.div {...fadeUp(0.08)} className="flex flex-col justify-center">
-            <p className="font-sans text-[0.72rem] font-semibold uppercase tracking-[0.4em] text-[#8a641e]">
+            <p className="font-sans text-[0.72rem] font-semibold uppercase tracking-[0.4em] text-[var(--color-navy)]/72">
               Embarcação
             </p>
             <h2 className="mt-4 text-balance font-display text-4xl leading-none tracking-[-0.03em] sm:text-5xl">
@@ -815,11 +815,11 @@ export default function Home() {
 
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
               <div className="rounded-[1.4rem] bg-[#e8f1f4] px-4 py-4 shadow-[inset_0_0_0_1px_rgba(10,25,47,0.04)]">
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#8a641e]">Capacidade</p>
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-navy)]/68">Capacidade</p>
                 <p className="mt-2 text-lg text-[var(--color-navy)]">Até 6 passageiros</p>
               </div>
               <div className="rounded-[1.4rem] bg-[#e8f1f4] px-4 py-4 shadow-[inset_0_0_0_1px_rgba(10,25,47,0.04)]">
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#8a641e]">Embarque</p>
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-navy)]/68">Embarque</p>
                 <p className="mt-2 text-lg text-[var(--color-navy)]">Saída de Boiçucanga</p>
               </div>
             </div>
@@ -830,7 +830,7 @@ export default function Home() {
       <section className="bg-[linear-gradient(180deg,#edf4f7_0%,#f8fafc_100%)] px-5 py-18 sm:px-8 lg:px-12 lg:py-24">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-center">
           <motion.div {...fadeUp()} className="max-w-2xl">
-            <p className="font-sans text-[0.72rem] uppercase tracking-[0.4em] text-[var(--color-sand)]">
+            <p className="font-sans text-[0.72rem] font-semibold uppercase tracking-[0.4em] text-[var(--color-navy)]/72">
               Prova social e autoridade
             </p>
             <h2 className="mt-4 text-balance font-display text-4xl leading-none tracking-[-0.03em] sm:text-5xl">
@@ -861,16 +861,16 @@ export default function Home() {
                 />
               </div>
               <p className="mt-6 font-display text-4xl">Marley</p>
-              <p className="mt-3 text-sm uppercase tracking-[0.32em] text-[var(--color-sand)]">
+              <p className="mt-3 text-sm font-semibold uppercase tracking-[0.32em] text-[var(--color-navy)]/66">
                 Experiências no mar
               </p>
               <div className="mt-8 grid w-full gap-3 text-left">
                 <div className="flex items-center gap-3 rounded-2xl border border-[rgba(10,25,47,0.08)] bg-[#eef4f7] px-4 py-3 shadow-[0_12px_28px_rgba(10,25,47,0.06)]">
-                  <MapPinned aria-hidden="true" className="h-4 w-4 shrink-0 text-[var(--color-sand)]" />
+                  <MapPinned aria-hidden="true" className="h-4 w-4 shrink-0 text-[var(--color-navy)]/68" />
                   <span>Saída de Boiçucanga</span>
                 </div>
                 <div className="flex items-center gap-3 rounded-2xl border border-[rgba(10,25,47,0.08)] bg-[#eef4f7] px-4 py-3 shadow-[0_12px_28px_rgba(10,25,47,0.06)]">
-                  <ShipWheel aria-hidden="true" className="h-4 w-4 shrink-0 text-[var(--color-sand)]" />
+                  <ShipWheel aria-hidden="true" className="h-4 w-4 shrink-0 text-[var(--color-navy)]/68" />
                   <span>Passeios privativos com até 6 passageiros</span>
                 </div>
               </div>

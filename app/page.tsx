@@ -25,7 +25,7 @@ declare global {
   }
 }
 
-const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "5511956773322";
+const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "5511960175954";
 
 const experienceCards = [
   {
@@ -156,7 +156,7 @@ const structuredData = {
   description:
     "Passeios privativos de lancha em São Sebastião com saída de Boiçucanga, roteiros para três ilhas, Ilha Montão do Trigo, Ilhabela e experiências personalizadas.",
   areaServed: ["São Sebastião", "Boiçucanga", "Ilhabela", "Litoral Norte de São Paulo"],
-  telephone: "+55 11 95677-3322",
+  telephone: "+55 11 96017-5954",
   priceRange: "R$ 1.600 - R$ 4.600",
   sameAs: ["https://marleyaluguellancha.vercel.app"],
   makesOffer: plans.map((plan) => ({

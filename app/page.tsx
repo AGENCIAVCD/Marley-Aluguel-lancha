@@ -243,6 +243,7 @@ export default function Home() {
   const [activeExperience, setActiveExperience] = useState(0);
   const [people, setPeople] = useState("4");
   const [date, setDate] = useState("");
+  const experienceTrackRef = useRef<HTMLDivElement | null>(null);
   const experienceRefs = useRef<Array<HTMLElement | null>>([]);
   const { scrollYProgress } = useScroll();
   const heroY = useTransform(scrollYProgress, [0, 1], [0, shouldReduceMotion ? 0 : -140]);
@@ -271,12 +272,18 @@ export default function Home() {
 
   function selectExperience(index: number) {
     const nextIndex = (index + experienceCards.length) % experienceCards.length;
+    const track = experienceTrackRef.current;
+    const card = experienceRefs.current[nextIndex];
 
     setActiveExperience(nextIndex);
-    experienceRefs.current[nextIndex]?.scrollIntoView({
+
+    if (!track || !card) {
+      return;
+    }
+
+    track.scrollTo({
+      left: card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2,
       behavior: shouldReduceMotion ? "auto" : "smooth",
-      inline: "center",
-      block: "nearest",
     });
   }
 
@@ -307,13 +314,17 @@ export default function Home() {
 
     const timer = window.setInterval(() => {
       const nextIndex = (activeExperience + 1 + experienceCards.length) % experienceCards.length;
+      const track = experienceTrackRef.current;
+      const card = experienceRefs.current[nextIndex];
 
       setActiveExperience(nextIndex);
-      experienceRefs.current[nextIndex]?.scrollIntoView({
-        behavior: "smooth",
-        inline: "center",
-        block: "nearest",
-      });
+
+      if (track && card) {
+        track.scrollTo({
+          left: card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2,
+          behavior: "smooth",
+        });
+      }
     }, 3600);
 
     return () => window.clearInterval(timer);
@@ -603,6 +614,7 @@ export default function Home() {
           </button>
 
           <div
+            ref={experienceTrackRef}
             onScroll={(event) => {
               const container = event.currentTarget;
               const center = container.scrollLeft + container.clientWidth / 2;

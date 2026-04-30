@@ -14,6 +14,12 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
+declare global {
+  interface Window {
+    dataLayer?: Array<Record<string, unknown>>;
+  }
+}
+
 const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "";
 
 const experienceCards = [
@@ -71,6 +77,19 @@ const highlights = [
 
 const primaryInteractiveClassName =
   "outline-none transition focus-visible:ring-2 focus-visible:ring-[var(--color-aqua)] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent";
+
+function trackEvent(eventName: string, payload: Record<string, unknown>) {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  window.dataLayer = window.dataLayer ?? [];
+  window.dataLayer.push({
+    event: eventName,
+    page: "home",
+    ...payload,
+  });
+}
 
 function fadeUp(delay = 0) {
   return {
@@ -164,6 +183,14 @@ export default function Home() {
                 href={whatsappHref}
                 target="_blank"
                 rel="noreferrer"
+                onClick={() =>
+                  trackEvent("whatsapp_click", {
+                    cta_location: "header",
+                    plan: activeItinerary,
+                    guests: people,
+                    preferred_date: date || "a_definir",
+                  })
+                }
                 className={`shrink-0 rounded-full border border-white/14 bg-white/12 px-4 py-2 text-xs font-medium text-white hover:border-[var(--color-sand)] hover:bg-white/18 sm:mr-3 sm:px-5 sm:text-sm lg:mr-5 ${primaryInteractiveClassName}`}
               >
                 Reservar
@@ -202,6 +229,14 @@ export default function Home() {
                     href={whatsappHref}
                     target="_blank"
                     rel="noreferrer"
+                    onClick={() =>
+                      trackEvent("whatsapp_click", {
+                        cta_location: "hero_primary",
+                        plan: activeItinerary,
+                        guests: people,
+                        preferred_date: date || "a_definir",
+                      })
+                    }
                     className={`inline-flex items-center justify-center gap-2 rounded-full bg-[var(--color-sand)] px-6 py-4 text-center text-sm font-semibold text-[var(--color-navy)] hover:bg-[var(--color-aqua)] ${primaryInteractiveClassName}`}
                   >
                     Reservar meu passeio de lancha
@@ -209,6 +244,11 @@ export default function Home() {
                   </a>
                   <a
                     href="#roteiros"
+                    onClick={() =>
+                      trackEvent("view_plans", {
+                        cta_location: "hero_secondary",
+                      })
+                    }
                     className={`inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-4 text-center text-sm font-medium text-white hover:bg-white/10 ${primaryInteractiveClassName}`}
                   >
                     Ver roteiros
@@ -278,8 +318,16 @@ export default function Home() {
                     href={whatsappHref}
                     target="_blank"
                     rel="noreferrer"
-                  className={`inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-4 text-sm font-semibold text-[var(--color-navy)] hover:bg-[var(--color-aqua)] ${primaryInteractiveClassName}`}
-                >
+                    onClick={() =>
+                      trackEvent("whatsapp_click", {
+                        cta_location: "booking_form",
+                        plan: activeItinerary,
+                        guests: people,
+                        preferred_date: date || "a_definir",
+                      })
+                    }
+                    className={`inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-4 text-sm font-semibold text-[var(--color-navy)] hover:bg-[var(--color-aqua)] ${primaryInteractiveClassName}`}
+                  >
                     Reservar passeio pelo WhatsApp
                     <MessageCircle aria-hidden="true" className="h-4 w-4" />
                   </a>
@@ -391,7 +439,14 @@ export default function Home() {
                     </div>
                     <button
                       type="button"
-                      onClick={() => setActiveItinerary(plan.id)}
+                      onClick={() => {
+                        setActiveItinerary(plan.id);
+                        trackEvent("select_plan", {
+                          selected_plan: plan.id,
+                          plan_label: plan.label,
+                          plan_price: plan.price,
+                        });
+                      }}
                       className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] ${
                         active
                           ? `border-[var(--color-sand)] bg-[var(--color-sand)]/12 text-[var(--color-navy)] ${primaryInteractiveClassName}`
@@ -481,6 +536,16 @@ export default function Home() {
                     href={buildWhatsappHref(people, date, plan.id)}
                     target="_blank"
                     rel="noreferrer"
+                    onClick={() =>
+                      trackEvent("whatsapp_click", {
+                        cta_location: "plan_card",
+                        plan: plan.id,
+                        plan_label: plan.label,
+                        plan_price: plan.price,
+                        guests: people,
+                        preferred_date: date || "a_definir",
+                      })
+                    }
                     className={`mt-8 inline-flex items-center gap-2 rounded-full px-6 py-4 text-sm font-semibold ${
                       active
                         ? `bg-[var(--color-navy)] text-white hover:bg-[var(--color-navy)]/88 ${primaryInteractiveClassName}`
@@ -618,6 +683,14 @@ export default function Home() {
               href={whatsappHref}
               target="_blank"
               rel="noreferrer"
+              onClick={() =>
+                trackEvent("whatsapp_click", {
+                  cta_location: "final_cta",
+                  plan: activeItinerary,
+                  guests: people,
+                  preferred_date: date || "a_definir",
+                })
+              }
               className={`inline-flex items-center justify-center gap-2 rounded-full bg-[var(--color-sand)] px-6 py-4 text-center text-sm font-semibold text-[var(--color-navy)] hover:bg-[var(--color-aqua)] ${primaryInteractiveClassName}`}
             >
               Reservar passeio de lancha
@@ -631,6 +704,14 @@ export default function Home() {
         href={whatsappHref}
         target="_blank"
         rel="noreferrer"
+        onClick={() =>
+          trackEvent("whatsapp_click", {
+            cta_location: "sticky_whatsapp",
+            plan: activeItinerary,
+            guests: people,
+            preferred_date: date || "a_definir",
+          })
+        }
         className={`fixed bottom-[max(1rem,env(safe-area-inset-bottom))] left-4 right-4 z-50 flex items-center gap-3 rounded-[1.75rem] bg-[var(--color-sand)] px-4 py-3 text-sm font-semibold text-[var(--color-navy)] shadow-[0_24px_60px_rgba(10,25,47,0.24)] hover:bg-[var(--color-aqua)] lg:bottom-8 lg:left-8 lg:right-auto lg:w-auto lg:min-w-[18rem] lg:justify-between lg:rounded-full lg:px-5 lg:py-4 ${primaryInteractiveClassName}`}
       >
         <span className="flex min-w-0 items-center gap-3">

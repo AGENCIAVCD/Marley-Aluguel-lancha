@@ -961,7 +961,7 @@ export default function Home() {
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-18 sm:px-8 lg:px-12 lg:py-24">
-        <div className="grid gap-6 overflow-hidden rounded-[2.2rem] border border-[rgba(10,25,47,0.08)] bg-white p-6 shadow-[0_30px_80px_rgba(10,25,47,0.08)] lg:grid-cols-[1.05fr_0.95fr] lg:p-8">
+        <div className="grid gap-6 overflow-hidden rounded-[2.2rem] border border-[rgba(10,25,47,0.12)] bg-white p-6 shadow-[0_34px_90px_rgba(10,25,47,0.12)] lg:grid-cols-[1.05fr_0.95fr] lg:p-8">
           <motion.div
             {...fadeUp()}
             className="relative min-h-[22rem] overflow-hidden rounded-[2rem] border border-white shadow-[0_28px_80px_rgba(10,25,47,0.22)] ring-1 ring-[rgba(10,25,47,0.08)]"
@@ -979,7 +979,7 @@ export default function Home() {
                 className="object-cover object-center"
               />
             </motion.div>
-            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,25,47,0.1)_5%,rgba(10,25,47,0.72)_100%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,25,47,0.02)_8%,rgba(10,25,47,0.24)_52%,rgba(10,25,47,0.7)_100%)]" />
             <div className="absolute inset-x-0 bottom-0 p-6 text-white">
               <p className="font-sans text-[0.68rem] uppercase tracking-[0.35em] text-[var(--color-sand)]">
                 Modelo da lancha
@@ -995,18 +995,18 @@ export default function Home() {
             <h2 className="mt-4 text-balance font-display text-4xl leading-none tracking-[-0.03em] sm:text-5xl">
               Uma Ventura 23 pés para passeios elegantes e confortáveis no litoral.
             </h2>
-            <p className="mt-6 max-w-xl text-base leading-7 text-[color:rgba(10,25,47,0.72)]">
+            <p className="mt-6 max-w-xl text-base leading-7 text-[color:rgba(10,25,47,0.84)]">
               A lancha une porte ideal para grupos pequenos, navegação agradável e saída de Boiçucanga.
               O endereço do píer de embarque é enviado após a confirmação do passeio.
             </p>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-[1.4rem] bg-[#e8f1f4] px-4 py-4 shadow-[inset_0_0_0_1px_rgba(10,25,47,0.04)]">
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-navy)]/68">Capacidade</p>
+              <div className="rounded-[1.4rem] border border-[rgba(10,25,47,0.1)] bg-[#dfecef] px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.72),0_14px_34px_rgba(10,25,47,0.08)]">
+                <p className="text-sm font-bold uppercase tracking-[0.2em] text-[var(--color-navy)]/78">Capacidade</p>
                 <p className="mt-2 text-lg text-[var(--color-navy)]">Até 6 passageiros</p>
               </div>
-              <div className="rounded-[1.4rem] bg-[#e8f1f4] px-4 py-4 shadow-[inset_0_0_0_1px_rgba(10,25,47,0.04)]">
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-navy)]/68">Embarque</p>
+              <div className="rounded-[1.4rem] border border-[rgba(10,25,47,0.1)] bg-[#dfecef] px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.72),0_14px_34px_rgba(10,25,47,0.08)]">
+                <p className="text-sm font-bold uppercase tracking-[0.2em] text-[var(--color-navy)]/78">Embarque</p>
                 <p className="mt-2 text-lg text-[var(--color-navy)]">Saída de Boiçucanga</p>
               </div>
             </div>

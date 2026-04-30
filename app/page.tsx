@@ -36,7 +36,7 @@ const experienceCards = [
   },
   {
     title: "Conforto a bordo",
-    copy: "Ventura 23 pes com embarque privativo e atmosfera criada para relaxar com exclusividade.",
+    copy: "Ventura 23 pés com embarque privativo e atmosfera criada para relaxar com exclusividade.",
     image: "/pexels/boats-aerial.jpg",
     imageAlt: "Lanchas navegando no litoral norte durante passeio privativo em São Sebastião",
   },
@@ -51,43 +51,43 @@ const experienceCards = [
 const plans = [
   {
     id: "tres-ilhas",
-    label: "Preco promocional",
-    title: "Passeio das tres ilhas",
+    label: "Preço promocional",
+    title: "Passeio das três ilhas",
     price: "R$ 1.600,00",
     originalPrice: "R$ 2.300,00",
     duration: "3 horas",
     capacity: "Até 6 passageiros",
-    embark: "Saida de Boicucanga",
+    embark: "Saída de Boiçucanga",
     tagline: "Ilha dos Gatos, Ilha das Couves e As Ilhas em um roteiro compacto e certeiro.",
-    idealFor: "Perfeito para casal, familia pequena ou grupo que quer mar bonito, banho e fotos sem comprometer o dia inteiro.",
+    idealFor: "Perfeito para casal, família pequena ou grupo que quer mar bonito, banho e fotos sem comprometer o dia inteiro.",
     summary:
-      "Passeio privativo ideal para quem quer curtir tres paradas classicas com praticidade, visual bonito e tempo para banho.",
-    benefits: ["Ilha dos Gatos", "Ilha das Couves", "As Ilhas", "Endereco do pier enviado apos a reserva"],
-    secretTitle: "O melhor custo por memoria",
+      "Passeio privativo ideal para quem quer curtir três paradas clássicas com praticidade, visual bonito e tempo para banho.",
+    benefits: ["Ilha dos Gatos", "Ilha das Couves", "As Ilhas", "Endereço do píer enviado após a reserva"],
+    secretTitle: "O melhor custo por memória",
     secretCopy:
-      "Esse plano funciona muito bem para quem quer sentir que fez algo especial sem transformar o passeio em uma grande producao.",
-    secretBullets: ["Sai bonito nas fotos", "Cabe na agenda do fim de semana", "Entrega experiencia premium com investimento menor"],
+      "Esse plano funciona muito bem para quem quer sentir que fez algo especial sem transformar o passeio em uma grande produção.",
+    secretBullets: ["Sai bonito nas fotos", "Cabe na agenda do fim de semana", "Entrega experiência premium com investimento menor"],
     image: "/pexels/boats-aerial.jpg",
     imageAlt: "Vista aérea de lanchas em roteiro das três ilhas saindo de Boiçucanga",
   },
   {
     id: "montao-do-trigo",
     label: "Roteiro exclusivo",
-    title: "Ilha Montao do Trigo",
+    title: "Ilha Montão do Trigo",
     price: "R$ 2.800,00",
     originalPrice: null,
     duration: "3 a 4 horas",
     capacity: "Até 6 passageiros",
-    embark: "Saida de Boicucanga",
-    tagline: "Um passeio para quem quer ir alem do obvio e conhecer um visual marcante do litoral.",
-    idealFor: "Ideal para quem ja conhece os roteiros mais basicos e quer uma navegacao com cara de descoberta.",
+    embark: "Saída de Boiçucanga",
+    tagline: "Um passeio para quem quer ir além do óbvio e conhecer um visual marcante do litoral.",
+    idealFor: "Ideal para quem já conhece os roteiros mais básicos e quer uma navegação com cara de descoberta.",
     summary:
-      "Roteiro privativo ate a Ilha Montao do Trigo, com navegacao cenica, pausa para contemplar e tempo para aproveitar o mar.",
-    benefits: ["Ilha Montao do Trigo", "Roteiro menos comum", "Navegacao de 3 a 4 horas", "Endereco do pier enviado apos a reserva"],
+      "Roteiro privativo até a Ilha Montão do Trigo, com navegação cênica, pausa para contemplar e tempo para aproveitar o mar.",
+    benefits: ["Ilha Montão do Trigo", "Roteiro menos comum", "Navegação de 3 a 4 horas", "Endereço do píer enviado após a reserva"],
     secretTitle: "A escolha de quem quer novidade",
     secretCopy:
-      "Montao do Trigo tem apelo de descoberta. E o roteiro certo para vender exclusividade sem depender de um passeio muito longo.",
-    secretBullets: ["Menos previsivel", "Mais sensacao de roteiro especial", "Boa duracao para aproveitar sem pressa"],
+      "Montão do Trigo tem apelo de descoberta. É o roteiro certo para vender exclusividade sem depender de um passeio muito longo.",
+    secretBullets: ["Menos previsível", "Mais sensação de roteiro especial", "Boa duração para aproveitar sem pressa"],
     image: "/pexels/coast-emerald.jpg",
     imageAlt: "Costa preservada no litoral norte em passeio de lancha para Ilha Montão do Trigo",
   },
@@ -99,16 +99,16 @@ const plans = [
     originalPrice: null,
     duration: "3 a 4 horas",
     capacity: "Até 6 passageiros",
-    embark: "Saida de Boicucanga",
-    tagline: "Ilhabela em meio periodo, com possibilidade de avistamento de baleias na temporada.",
+    embark: "Saída de Boiçucanga",
+    tagline: "Ilhabela em meio período, com possibilidade de avistamento de baleias na temporada.",
     idealFor: "Ideal para clientes que querem impressionar convidados, celebrar uma data ou transformar o passeio no evento principal.",
     summary:
-      "Experiencia mais exclusiva para quem quer navegar ate Ilhabela e aproveitar um roteiro de 3 a 4 horas com possibilidade de avistar baleias.",
-    benefits: ["Navegacao ate Ilhabela", "Possibilidade de avistamento de baleias", "Duracao de 3 a 4 horas", "Endereco do pier enviado apos a reserva"],
-    secretTitle: "O plano que vira historia",
+      "Experiência mais exclusiva para quem quer navegar até Ilhabela e aproveitar um roteiro de 3 a 4 horas com possibilidade de avistar baleias.",
+    benefits: ["Navegação até Ilhabela", "Possibilidade de avistamento de baleias", "Duração de 3 a 4 horas", "Endereço do píer enviado após a reserva"],
+    secretTitle: "O plano que vira história",
     secretCopy:
-      "Aqui o valor nao esta so na distancia. Esta na chance de viver um dia raro, com Ilhabela no roteiro e natureza fazendo parte da surpresa.",
-    secretBullets: ["Mais tempo a bordo", "Mais impacto para datas especiais", "Mais chance de uma experiencia realmente incomum"],
+      "Aqui o valor não está só na distância. Está na chance de viver um dia raro, com Ilhabela no roteiro e natureza fazendo parte da surpresa.",
+    secretBullets: ["Mais tempo a bordo", "Mais impacto para datas especiais", "Mais chance de uma experiência realmente incomum"],
     image: "/pexels/hero-sao-sebastiao.jpg",
     imageAlt: "Mar de São Sebastião no roteiro de lancha para Ilhabela com possibilidade de baleias",
   },
@@ -120,16 +120,16 @@ const plans = [
     originalPrice: null,
     duration: "Personalizado",
     capacity: "Até 6 passageiros",
-    embark: "Saida de Boicucanga",
-    tagline: "Quer conhecer outras praias e ilhas? A equipe monta o roteiro com voce.",
-    idealFor: "Perfeito para quem tem uma praia em mente, quer ajustar tempo de navegacao ou precisa de uma experiencia sob medida.",
+    embark: "Saída de Boiçucanga",
+    tagline: "Quer conhecer outras praias e ilhas? A equipe monta o roteiro com você.",
+    idealFor: "Perfeito para quem tem uma praia em mente, quer ajustar tempo de navegação ou precisa de uma experiência sob medida.",
     summary:
-      "Converse com nossa equipe para criar um roteiro personalizado por praias, ilhas e paradas que facam sentido para o seu grupo.",
-    benefits: ["Roteiro criado com a equipe", "Praias e ilhas sob consulta", "Duracao combinada antes da reserva", "Endereco do pier enviado apos a reserva"],
+      "Converse com nossa equipe para criar um roteiro personalizado por praias, ilhas e paradas que façam sentido para o seu grupo.",
+    benefits: ["Roteiro criado com a equipe", "Praias e ilhas sob consulta", "Duração combinada antes da reserva", "Endereço do píer enviado após a reserva"],
     secretTitle: "A rota que nasce da conversa",
     secretCopy:
-      "Esse plano e para transformar uma ideia em passeio. Em vez de encaixar o cliente em uma rota pronta, a Marley desenha a experiencia com ele.",
-    secretBullets: ["Mais flexibilidade", "Mais aderencia ao perfil do grupo", "Boa opcao para pedidos especiais"],
+      "Esse plano é para transformar uma ideia em passeio. Em vez de encaixar o cliente em uma rota pronta, a Marley desenha a experiência com ele.",
+    secretBullets: ["Mais flexibilidade", "Mais aderência ao perfil do grupo", "Boa opção para pedidos especiais"],
     image: "/pexels/turquoise-boats.jpg",
     imageAlt: "Água cristalina e barcos no litoral norte para passeio personalizado de lancha",
   },
@@ -159,9 +159,9 @@ const structuredData = {
 };
 
 const highlights = [
-  "Roteiros privativos com saida de Boicucanga.",
-  "O endereco do pier e enviado apos a confirmacao da reserva.",
-  "Experiencia pensada para casais, familias e grupos pequenos.",
+  "Roteiros privativos com saída de Boiçucanga.",
+  "O endereço do píer é enviado após a confirmação da reserva.",
+  "Experiência pensada para casais, famílias e grupos pequenos.",
 ];
 
 const primaryInteractiveClassName =
@@ -197,7 +197,7 @@ function buildWhatsappHref(people: string, date: string, itinerary: string) {
   return `https://wa.me/${whatsappNumber}`;
 }
 
-const clientFacts = ["São Sebastião", "Saida de Boicucanga", "Até 6 passageiros"];
+const clientFacts = ["São Sebastião", "Saída de Boiçucanga", "Até 6 passageiros"];
 
 export default function Home() {
   const shouldReduceMotion = useReducedMotion();
@@ -337,8 +337,8 @@ export default function Home() {
                   {...fadeUp(0.16)}
                   className="mt-7 max-w-xl pl-1 text-base leading-8 text-white/78 sm:text-[1.08rem]"
                 >
-                  Passeios privativos de lancha com conforto e segurança, com saida de Boicucanga e
-                  endereco do pier enviado apos a confirmacao da reserva.
+                  Passeios privativos de lancha com conforto e segurança, com saída de Boiçucanga e
+                  endereço do píer enviado após a confirmação da reserva.
                 </motion.p>
 
                 <motion.div
@@ -572,7 +572,7 @@ export default function Home() {
                           <p className="mt-2 font-display text-6xl leading-none text-[var(--color-sand)]">
                             {selectedPlan.price}
                           </p>
-                          <p className="mt-3 text-sm text-white/64">Passeio privativo para ate 6 passageiros.</p>
+                          <p className="mt-3 text-sm text-white/64">Passeio privativo para até 6 passageiros.</p>
                           {selectedPlan.originalPrice ? (
                             <p className="mt-2 text-sm text-white/58 line-through">Valor real {selectedPlan.originalPrice}</p>
                           ) : null}
@@ -582,7 +582,7 @@ export default function Home() {
                           <div className="grid grid-cols-2 gap-3">
                             <div className="rounded-[1.2rem] border border-white/12 bg-white/10 p-4">
                               <Clock3 aria-hidden="true" className="h-4 w-4 text-[var(--color-sand)]" />
-                              <p className="mt-3 text-sm text-white/64">Duracao</p>
+                              <p className="mt-3 text-sm text-white/64">Duração</p>
                               <p className="mt-1 font-semibold">{selectedPlan.duration}</p>
                             </div>
                             <div className="rounded-[1.2rem] border border-white/12 bg-white/10 p-4">
@@ -737,10 +737,10 @@ export default function Home() {
               </div>
 
               <div className="rounded-[1.6rem] border border-white/10 bg-white/6 p-5 text-white">
-                <p className="text-sm uppercase tracking-[0.22em] text-[var(--color-sand)]">Comparativo rapido</p>
+                <p className="text-sm uppercase tracking-[0.22em] text-[var(--color-sand)]">Comparativo rápido</p>
                 <div className="mt-5 space-y-4 text-sm text-white/72">
-                  <p>Tres ilhas: promocional de entrada para vender uma experiencia privativa e objetiva.</p>
-                  <p>Montao do Trigo: roteiro menos comum para quem quer sensacao de descoberta.</p>
+                  <p>Três ilhas: promocional de entrada para vender uma experiência privativa e objetiva.</p>
+                  <p>Montão do Trigo: roteiro menos comum para quem quer sensação de descoberta.</p>
                   <p>Ilhabela: melhor escolha para quem busca um passeio com mais impacto.</p>
                   <p>Personalizado: conversa direta para montar outras praias e ilhas.</p>
                 </div>
@@ -757,7 +757,7 @@ export default function Home() {
                     type="button"
                     onClick={() => movePlan(1)}
                     className={`inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/16 text-white hover:bg-white/10 ${primaryInteractiveClassName}`}
-                    aria-label="Proximo plano"
+                    aria-label="Próximo plano"
                   >
                     <ChevronRight aria-hidden="true" className="h-5 w-5" />
                   </button>
@@ -804,8 +804,8 @@ export default function Home() {
               Uma Ventura 23 pés para passeios elegantes e confortáveis no litoral.
             </h2>
             <p className="mt-6 max-w-xl text-base leading-7 text-[color:rgba(10,25,47,0.72)]">
-              A lancha une porte ideal para grupos pequenos, navegacao agradavel e saida de Boicucanga.
-              O endereco do pier de embarque e enviado apos a confirmacao do passeio.
+              A lancha une porte ideal para grupos pequenos, navegação agradável e saída de Boiçucanga.
+              O endereço do píer de embarque é enviado após a confirmação do passeio.
             </p>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
@@ -815,7 +815,7 @@ export default function Home() {
               </div>
               <div className="rounded-[1.4rem] bg-[var(--color-seafoam)] px-4 py-4">
                 <p className="text-sm uppercase tracking-[0.2em] text-[var(--color-sand)]">Embarque</p>
-                <p className="mt-2 text-lg text-[var(--color-navy)]">Saida de Boicucanga</p>
+                <p className="mt-2 text-lg text-[var(--color-navy)]">Saída de Boiçucanga</p>
               </div>
             </div>
           </motion.div>
@@ -848,7 +848,7 @@ export default function Home() {
               <div className="relative">
                 <div className="absolute inset-0 scale-110 rounded-[1.8rem] bg-[rgba(10,25,47,0.08)] blur-2xl" />
                 <Image
-                src="/images/logo-marley.png"
+                  src="/images/logo-marley.png"
                   alt="Logo da Marley Experiências no Mar"
                   width={220}
                   height={164}
@@ -862,7 +862,7 @@ export default function Home() {
               <div className="mt-8 grid w-full gap-3 text-left">
                 <div className="flex items-center gap-3 rounded-2xl border border-[rgba(10,25,47,0.08)] bg-[#eef4f7] px-4 py-3 shadow-[0_12px_28px_rgba(10,25,47,0.06)]">
                   <MapPinned aria-hidden="true" className="h-4 w-4 shrink-0 text-[var(--color-sand)]" />
-                  <span>Saida de Boicucanga</span>
+                  <span>Saída de Boiçucanga</span>
                 </div>
                 <div className="flex items-center gap-3 rounded-2xl border border-[rgba(10,25,47,0.08)] bg-[#eef4f7] px-4 py-3 shadow-[0_12px_28px_rgba(10,25,47,0.06)]">
                   <ShipWheel aria-hidden="true" className="h-4 w-4 shrink-0 text-[var(--color-sand)]" />
